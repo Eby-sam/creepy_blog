@@ -1,0 +1,30 @@
+{
+  "name": "creepy_blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass:dev": "sass public/assets/sass:public/assets/css",
+    "sas:prod": "sass --no-source-map public/assets/sass:public/assets/css",
+    "sass:watch": "sass --watch public/assets/sass:public/assets/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eby-sam/creepy_blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eby-sam/creepy_blog/issues"
+  },
+  "homepage": "https://github.com/Eby-sam/creepy_blog#readme",
+  "dependencies": {
+    "sass": "^1.49.7"
+  },
+  "devDependencies": {},
+  "directories": {
+    "doc": "doc"
+  }
+}
