@@ -1,30 +1,30 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <title>Creepy blog</title>
-</head>
-<body>
-<div id="container">
-    <div>
-        <div id="title">CREEPY BLOG</div>
-        <div id="center"></div>
-        <div id="log">
-            <div>
-                <a href="">Inscription</a>
-            </div>
-            <div><a href="">Connexion</a>
-            </div>
-            <div><a href="">Deconnexion</a>
-            </div>
-        </div>
-    </div>
-</div>
+<?php
+use App\Routing\AbstractRouter;
+use App\Routing\ArticleRouter;
+use App\Routing\HomeRouter;
+use App\Routing\UserRouter;
+use App\Routing\CommentRouter;
+use App\Controller\ErrorController;
 
+require __DIR__ . '/../include.php';
+session_start();
 
-</body>
-</html>
+$page = isset($_GET['c']) ? AbstractRouter::secure($_GET['c']) : 'home';
+$method = isset($_GET['a']) ? AbstractRouter::secure($_GET['a']) : 'index';
+
+switch ($page) {
+    case 'home':
+        HomeRouter::route();
+        break;
+    case 'user':
+        UserRouter::route($method);
+        break;
+    case 'article':
+        ArticleRouter::route($method);
+        break;
+    case 'comment':
+        CommentRouter::route($method);
+        break;
+    default:
+        (new ErrorController())->error404($page);
+}
