@@ -23,7 +23,7 @@ class ArticleManager
             foreach ($query->fetchAll() as $articleData) {
                 $articles[] = (new Article())
                     ->setId($articleData['id'])
-                    ->setAuthor(UserManager::getUserById($articleData['user_fk']))
+                    ->setUserFk(UserManager::getUserById($articleData['user_fk']))
                     ->setContent($articleData['content'])
                     ->setTitle($articleData['title']);
             }
@@ -89,7 +89,7 @@ class ArticleManager
             ->setId($data['id'])
             ->setTitle($data['title'])
             ->setContent($data['content'])
-            ->setAuthor(UserManager::getUserById($data['user_fk']));
+            ->setUserFk(UserManager::getUserById($data['user_fk']));
     }
 
     /**
