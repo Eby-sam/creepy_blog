@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Routing;
+namespace creepy\Routing;
 
+use creepy\Routing\AbstractRouter;
 use creepy\Controller\HomeController;
 
 class HomeRouter extends AbstractRouter

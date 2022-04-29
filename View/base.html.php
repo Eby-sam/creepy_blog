@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="container">
-    <div>
+    <div id="bande">
         <div id="title">CREEPY BLOG</div>
         <div id="center"></div>
         <div id="log">
@@ -19,11 +19,60 @@
             </div>
             <div><a href="">Connexion</a>
             </div>
-            <div><a href="">Deconnexion</a>
+            <div><a href="/index.php?c=user&a=disconnect">Deconnexion</a>
             </div>
         </div>
     </div>
-</div>
+    <?php
+
+    use creepy\Controller\AbstractController;
+    use creepy\Controller\UserController;
+    use creepy\Model\Entity\Role;
+
+    // error messages.
+    if (isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
+        $errors = $_SESSION['errors'];
+        unset($_SESSION['errors']);
+
+        foreach ($errors as $error) { ?>
+            <div class="alert alert-error"><?= $error ?></div> <?php
+        }
+    }
+
+    //success messages.
+    if (isset($_SESSION['success'])) {
+        $message = $_SESSION['success'];
+        unset($_SESSION['success']);
+        ?>
+        <div class="alert alert-success"><?= $message ?></div> <?php
+    }
+    ?>
+    <div id="container-body">
+          <nav id="nav">
+             <div id="divNav">
+                 <div class="link">
+                     <a href="/index.php?c=home">Accueil</a>
+                 </div>
+                    <div class="link second">
+                        <a href="/index.php?c=user">Name</a>
+                    </div>
+                    <div class="link second">
+                        <a href="/index.php?c=article">Article</a>
+                    </div>
+                    <div class="link second">
+                        <a href="">Galerie</a>
+                    </div>
+                </div>
+            </nav>
+            <main class="container">
+                <div id="">
+                    <?= $html ?>
+                </div>
+            </main>
+        </div>
+
+    </div>
+
 
 
 </body>

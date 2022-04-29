@@ -2,7 +2,7 @@
 
 namespace creepy\Routing;
 
-use App\Routing\AbstractRouter;
+use creepy\Routing\AbstractRouter;
 use creepy\Controller\ErrorController;
 use creepy\Controller\UserController;
 

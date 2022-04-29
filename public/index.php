@@ -1,10 +1,10 @@
 <?php
-use App\Routing\AbstractRouter;
-use App\Routing\ArticleRouter;
-use App\Routing\HomeRouter;
-use App\Routing\UserRouter;
-use App\Routing\CommentRouter;
-use App\Controller\ErrorController;
+use creepy\Routing\AbstractRouter;
+use creepy\Routing\ArticleRouter;
+use creepy\Routing\HomeRouter;
+use creepy\Routing\UserRouter;
+use creepy\Routing\CommentRouter;
+use creepy\Controller\ErrorController;
 
 require __DIR__ . '/../include.php';
 session_start();

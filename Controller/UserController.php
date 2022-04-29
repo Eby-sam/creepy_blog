@@ -14,7 +14,7 @@ class UserController extends AbstractController
      */
     public function index()
     {
-        $this->render('user/user-list', [
+        $this->render('user/index', [
             'users_list' => UserManager::getAllUser()
         ]);
     }

@@ -1,5 +1,5 @@
 <?php
-namespace App\Routing;
+namespace creepy\Routing;
 
 use creepy\Controller\AbstractController;
 use creepy\Controller\ErrorController;

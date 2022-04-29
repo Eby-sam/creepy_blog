@@ -6,7 +6,7 @@ use creepy\Model\Entity\Article;
 use creepy\Model\Manager\ArticleManager;
 use creepy\Model\Manager\CommentManager;
 use creepy\Model\Manager\UserManager;
-use User;
+use creepy\Model\Entity\User;
 
 class ArticleController extends AbstractController
 {
@@ -15,7 +15,7 @@ class ArticleController extends AbstractController
      */
     public function index()
     {
-        $this->render('home/index');
+        $this->render('article/index');
     }
 
     /**
