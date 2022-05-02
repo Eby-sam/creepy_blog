@@ -3,36 +3,17 @@
 namespace creepy\Model\Entity;
 
 use creepy\Model\Entity\AbstractEntity;
-
+use creepy\Model\Entity\Role;
 
 
 class User extends AbstractEntity
 {
-
     private string $firstname;
     private string $lastname;
-    private string $pseudo;
     private string $password;
     private string $email;
     private array $role_fk;
-
-    /**
-     * @return string
-     */
-    public function getPseudo(): string
-    {
-        return $this->pseudo;
-    }
-
-    /**
-     * @param string $pseudo
-     */
-    public function setPseudo(string $pseudo): self
-    {
-        $this->pseudo = $pseudo;
-        return $this;
-    }
-
+    private string $pseudo;
 
     /**
      * @return string
@@ -99,6 +80,23 @@ class User extends AbstractEntity
     public function setEmail(string $email): self
     {
         $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPseudo(): string
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     *
+     */
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
         return $this;
     }
 

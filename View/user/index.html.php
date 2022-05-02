@@ -1,3 +1,5 @@
 <div id="container-user">
-    <h1>USER</h1>
+    <div class="divTitle">
+        <h1>PROFIL</h1>
+    </div>
 </div>

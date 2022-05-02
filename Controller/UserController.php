@@ -73,6 +73,7 @@ class UserController extends AbstractController
             $mail = $this->dataClean($this->getFormField('email'));
             $firstname = $this->dataClean($this->getFormField('firstname'));
             $lastname = $this->dataClean($this->getFormField('lastname'));
+            $pseudo = $this->dataClean($this->getFormField('pseudo'));
             $password = $_POST['password'];
             $passwordRepeat = $_POST['password-repeat'];
 
@@ -95,13 +96,14 @@ class UserController extends AbstractController
             }
             else {
                 $user = new User();
-                $role = RoleManager::getRoleByName('user');
+                $role = RoleManager::getRoleByName('USER');
                 $user
                     ->setFirstname($firstname)
                     ->setLastname($lastname)
                     ->setEmail($mail)
+                    ->setPseudo($pseudo)
                     ->setPassword(password_hash($password, PASSWORD_DEFAULT))
-                    ->setRole([$role]);
+                    ->setRoleFk([$role]);
 
 
                 if(!UserManager::mailExists($user->getEmail())) {
@@ -109,7 +111,7 @@ class UserController extends AbstractController
                     if(null !== $user->getId()) {
                         $_SESSION['success'] = "Compte activé";
                         $user->setPassword('');
-                        $_SESSION['SimpleUser'] = $user;
+                        $_SESSION['USER'] = $user;
                         header("Location: index.php/?c=home");
                     }
                     else {
@@ -120,7 +122,6 @@ class UserController extends AbstractController
                     $_SESSION['errors'] = ["Adresse mail déjà existante"];
                 }
             }
-
         }
         $this->render('user/register');
     }
@@ -129,7 +130,7 @@ class UserController extends AbstractController
      * login
      * @return void
      */
-    public function connected()
+    public function connect()
     {
         self::redirectIfConnected();
 
@@ -153,7 +154,7 @@ class UserController extends AbstractController
             }
         }
 
-        $this->render('user/connected');
+        $this->render('user/connect');
     }
 
     /**

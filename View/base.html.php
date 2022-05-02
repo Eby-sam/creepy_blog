@@ -15,9 +15,9 @@
         <div id="center"></div>
         <div id="log">
             <div>
-                <a href="">Inscription</a>
+                <a href="/index.php?c=user&a=register">Inscription</a>
             </div>
-            <div><a href="">Connexion</a>
+            <div><a href="/index.php?c=user&a=connect">Connexion</a>
             </div>
             <div><a href="/index.php?c=user&a=disconnect">Deconnexion</a>
             </div>
@@ -65,16 +65,12 @@
                 </div>
             </nav>
             <main class="container">
-                <div id="">
                     <?= $html ?>
-                </div>
             </main>
         </div>
 
     </div>
-
-
-
+<script src="/assets/js/app.js"></script>
 </body>
 </html>
 

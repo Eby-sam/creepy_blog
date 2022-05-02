@@ -40,17 +40,17 @@ class ArticleManager
      * @param int $id
      * @return void
      */
-    public static function addNewArticle(Article &$article, string $title, string $content, int $id): bool
+    public static function addNewArticle(Article & $article, string $title, string $content, int $id): bool
     {
         $stmt = DataBase::DataConnect()->prepare("
-            INSERT INTO " . self::TABLE . " (title, content, user_fk)
-            VALUES (:title, :content, :user_fk)
+            INSERT INTO " . self::TABLE . " (title, content, user_fk, comment_fk)
+            VALUES (:title, :content, :user_fk, :comment_fk)
         ");
 
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':content', $content);
         $stmt->bindParam('user_fk', $id);
-
+        $stmt->bindParam('comment_fk', $id);
 
         $result = $stmt->execute();
         $article->setId(DataBase::DataConnect()->lastInsertId());

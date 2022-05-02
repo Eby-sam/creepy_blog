@@ -1,3 +1,5 @@
+$color-page : #e3e3e3;
+
 * {
   margin: 0;
   padding: 0;
@@ -92,9 +94,77 @@ body {
     .container {
       width: 90%;
       height: 95vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+
+      #container-home {
+        background-color: $color-page;
+        width: 100%;
+        height: 100%;
+
+        .divTitle {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      #container-article {
+        background-color: $color-page;
+        width: 100%;
+        height: 100%;
+
+        .divTitle {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      #container-user {
+        background-color: $color-page;
+        width: 100%;
+        height: 100%;
+
+        .divTitle {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      .container-form {
+        background-color: $color-page;
+        width: 100%;
+        height: 100%;
+
+        h1 {
+          text-align: center;
+        }
+        #form-register {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          #register {
+            width: 20%;
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+
+            .div-lab {
+              width: 100%;
+              height: 15%;
+              margin-top: 3px;
+            }
+
+            .button-inc {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+          }
+        }
+      }
     }
   }
 

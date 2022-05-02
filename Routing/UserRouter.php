@@ -24,11 +24,11 @@ class UserRouter extends AbstractRouter
             case 'register':
                 $controller->register();
                 break;
+            case 'connect':
+                $controller->connect();
+                break;
             case 'disconnected':
                 $controller->disconnected();
-                break;
-            case 'connected':
-                $controller->connected();
                 break;
             default:
                 (new ErrorController())->error404($action);

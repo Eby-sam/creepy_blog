@@ -8,7 +8,7 @@ use creepy\Model\Entity\User;
 
 class RoleManager
 {
-    public const TABLE = "role";
+    public const TABLE = "cb_role";
 
     /**
      * @param User $user
@@ -18,7 +18,7 @@ class RoleManager
     {
         $roles = [];
         $query = DataBase::DataConnect()->query("
-            SELECT * FROM role WHERE id IN (SELECT role_fk FROM user WHERE id = {$user->getId()})");
+            SELECT * FROM TABLE WHERE id IN (SELECT role_fk FROM cb_user WHERE id = {$user->getId()})");
         if($query){
             foreach($query->fetchAll() as $roleData) {
                 $roles[] = (new Role())
@@ -37,9 +37,7 @@ class RoleManager
     public static function getRoleByName(string $roleName): Role
     {
         $role = new Role();
-        $rQuery = DataBase::DataConnect()->query("
-            SELECT * FROM role WHERE role_name = '".$roleName."'
-        ");
+        $rQuery = DataBase::DataConnect()->query("SELECT * FROM cb_role WHERE role_name = '".$roleName."'");
 
         if($rQuery && $roleData = $rQuery->fetch()) {
             $role->setId($roleData['id']);
