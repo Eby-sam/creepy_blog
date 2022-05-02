@@ -1,4 +1,4 @@
-<div>
+<div class="container-form">
     <h1>CONNEXION</h1>
 
     <div id="form-login">

@@ -70,10 +70,10 @@ class UserController extends AbstractController
         self::redirectIfConnected();
 
         if($this->verifyFormSubmit()) {
-            $mail = $this->dataClean($this->getFormField('email'));
             $firstname = $this->dataClean($this->getFormField('firstname'));
             $lastname = $this->dataClean($this->getFormField('lastname'));
             $pseudo = $this->dataClean($this->getFormField('pseudo'));
+            $mail = $this->dataClean($this->getFormField('email'));
             $password = $_POST['password'];
             $passwordRepeat = $_POST['password-repeat'];
 
@@ -100,11 +100,10 @@ class UserController extends AbstractController
                 $user
                     ->setFirstname($firstname)
                     ->setLastname($lastname)
-                    ->setEmail($mail)
                     ->setPseudo($pseudo)
+                    ->setEmail($mail)
                     ->setPassword(password_hash($password, PASSWORD_DEFAULT))
-                    ->setRoleFk([$role]);
-
+                    ->setRoleFk($role);
 
                 if(!UserManager::mailExists($user->getEmail())) {
                     UserManager::addUser($user);

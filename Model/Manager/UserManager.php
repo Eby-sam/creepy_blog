@@ -2,11 +2,14 @@
 
 namespace creepy\Model\Manager;
 
-use creepy\Model\Entity\User;
 use creepy\Model\Entity\Role;
-
-
 use DataBase;
+use creepy\Model\Entity\User;
+
+
+
+
+
 
 class UserManager {
     public const TABLE = 'cb_user';
@@ -34,8 +37,8 @@ class UserManager {
 
     public static function addUser(user & $user): bool {
         $stmt = DataBase::DataConnect()->prepare("
-            INSERT INTO " . self::TABLE . " (firstname,lastname,pseudo,password,email,role_fk) 
-            VALUES (:email, :firstname, :lastname,:pseudo ,:password, :role_fk)
+            INSERT INTO " . self::TABLE . " (firstname,lastname,pseudo,email,password,role_fk) 
+            VALUES (:firstname, :lastname,:pseudo , :email, :password, :role_fk)
         ");
 
         $stmt->bindValue(':firstname', $user->getFirstname());
@@ -43,7 +46,6 @@ class UserManager {
         $stmt->bindValue(':pseudo', $user->getPseudo());
         $stmt->bindValue(':email', $user->getEmail());
         $stmt->bindValue(':password', $user->getPassword());
-        $stmt->bindValue(':pseudo', $user->getPseudo());
         $stmt->bindValue(':role_fk', $user->getRoleFk()->getId());
 
         $result = $stmt->execute();
@@ -60,11 +62,11 @@ class UserManager {
     {
         $user = (new User())
             ->setId($data['id'])
-            ->setPassword($data['password'])
-            ->setEmail($data['email'])
-            ->setPseudo($data['pseudo'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
+            ->setPseudo($data['pseudo'])
+            ->setEmail($data['email'])
+            ->setPassword($data['password'])
             ->setRoleFk($data['Role_fk']);
 
         return $user->setRoleFk(RoleManager::getRoleByUser($user));
@@ -79,5 +81,16 @@ class UserManager {
     {
         $result = DataBase::DataConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE email = \"$mail\"");
         return $result ? $result->fetch()['cnt'] : 0;
+    }
+
+    /**
+     * @param string $mail
+     * @return User|null
+     */
+    public static function getUserByMail(string $mail): ?User
+    {
+        $stmt = DataBase::DataConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE email = :email ");
+        $stmt->bindParam(':email', $mail);
+        return $stmt->execute() ? self::makeUser($stmt->fetch()) : null;
     }
 }

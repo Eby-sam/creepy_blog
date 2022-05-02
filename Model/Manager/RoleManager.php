@@ -18,7 +18,7 @@ class RoleManager
     {
         $roles = [];
         $query = DataBase::DataConnect()->query("
-            SELECT * FROM TABLE WHERE id IN (SELECT role_fk FROM cb_user WHERE id = {$user->getId()})");
+            SELECT * FROM cb_role WHERE id IN (SELECT role_fk FROM cb_user WHERE id = {$user->getId()})");
         if($query){
             foreach($query->fetchAll() as $roleData) {
                 $roles[] = (new Role())
