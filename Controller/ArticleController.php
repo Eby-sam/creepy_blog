@@ -27,7 +27,7 @@ class ArticleController extends AbstractController
         self::redirectIfNotConnected();
         self::verifyRole();
         if (!self::verifyRole()) {
-            header('Location: /index.php?c=home');
+            header('Location: /index.php?c=list-article');
         }
 
 

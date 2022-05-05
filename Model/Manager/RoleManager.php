@@ -12,16 +12,16 @@ class RoleManager
 
     /**
      * @param User $user
-     * @return array
+     * @return Role
      */
-    public static function getRoleByUser(User $user): array
+    public static function getRoleByUser(User $user): Role
     {
-        $roles = [];
+        $roles = null;
         $query = DataBase::DataConnect()->query("
             SELECT * FROM cb_role WHERE id IN (SELECT role_fk FROM cb_user WHERE id = {$user->getId()})");
         if($query){
             foreach($query->fetchAll() as $roleData) {
-                $roles[] = (new Role())
+                $roles = (new Role())
                     ->setId($roleData['id'])
                     ->setRoleName($roleData['role_name'])
                 ;

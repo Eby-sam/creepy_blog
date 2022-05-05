@@ -93,11 +93,60 @@ body #container-body .container #container-home .divTitle {
 body #container-body .container #container-article {
   background-color: #e3e3e3;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 body #container-body .container #container-article .divTitle {
   width: 100%;
   text-align: center;
+}
+body #container-body .container #container-article #container-global {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+body #container-body .container #container-article #container-global #article-show {
+  width: 70%;
+}
+body #container-body .container #container-article #container-global #article-show .article {
+  width: 100%;
+  max-height: 50vh;
+  border: 1px solid black;
+  margin-top: 5px;
+  margin-left: 1%;
+  padding: 5px;
+}
+body #container-body .container #container-article #container-global #article-show .article .author {
+  width: 100%;
+  border-top: 3px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+}
+body #container-body .container #container-article #container-global #article-show .article .author .spanAut {
+  color: #a50606;
+  font-style: italic;
+}
+body #container-body .container #container-article #container-global .articleForm {
+  width: 25%;
+}
+body #container-body .container #container-article #container-global .articleForm form {
+  margin-top: 10px;
+}
+body #container-body .container #container-article #container-global .articleForm form div {
+  margin-top: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body #container-body .container #container-article #container-global .articleForm form div input {
+  width: 90%;
+}
+body #container-body .container #container-article #container-global .articleForm form div textarea {
+  width: 90%;
 }
 body #container-body .container #container-user {
   background-color: #e3e3e3;
@@ -107,6 +156,28 @@ body #container-body .container #container-user {
 body #container-body .container #container-user .divTitle {
   width: 100%;
   text-align: center;
+}
+body #container-body .container #container-user .profil {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 90%;
+}
+body #container-body .container #container-user .profil #info-user {
+  width: 50%;
+  height: 100%;
+  border: 5px solid #a50606;
+  border-radius: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+body #container-body .container #container-user .profil #user-article {
+  width: 30%;
+  height: 100%;
+  border: 5px solid #a50606;
+  border-radius: 15px;
 }
 body #container-body .container .container-form {
   background-color: #e3e3e3;

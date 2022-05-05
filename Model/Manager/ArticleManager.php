@@ -7,7 +7,7 @@ use DataBase;
 
 class ArticleManager
 {
-    public const TABLE = 'article';
+    public const TABLE = 'cb_article';
 
     /**
      * @return array
@@ -18,14 +18,14 @@ class ArticleManager
         $query = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE);
         if ($query) {
             $userManager = new UserManager();
-            $format = 'Y-m-d H:i:s';
+
 
             foreach ($query->fetchAll() as $articleData) {
                 $articles[] = (new Article())
                     ->setId($articleData['id'])
-                    ->setUserFk(UserManager::getUserById($articleData['user_fk']))
+                    ->setTitle($articleData['title'])
                     ->setContent($articleData['content'])
-                    ->setTitle($articleData['title']);
+                    ->setUserFk(UserManager::getUserById($articleData['user_fk']));
             }
         }
         return $articles;

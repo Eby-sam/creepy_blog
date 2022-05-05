@@ -6,6 +6,7 @@ use creepy\Model\Entity\AbstractEntity;
 use creepy\Model\Entity\Role;
 
 
+
 class User extends AbstractEntity
 {
     private string $firstname;
@@ -25,6 +26,7 @@ class User extends AbstractEntity
 
     /**
      * @param string $firstname
+     * @return User
      */
     public function setFirstname(string $firstname): self
     {
@@ -42,6 +44,7 @@ class User extends AbstractEntity
 
     /**
      * @param string $lastname
+     * @return User
      */
     public function setLastname(string $lastname): self
     {
@@ -59,6 +62,7 @@ class User extends AbstractEntity
 
     /**
      * @param string $password
+     * @return User
      */
     public function setPassword(string $password): self
     {
@@ -76,6 +80,7 @@ class User extends AbstractEntity
 
     /**
      * @param string $email
+     * @return User
      */
     public function setEmail(string $email): self
     {
@@ -92,7 +97,8 @@ class User extends AbstractEntity
     }
 
     /**
-     *
+     * @param string $pseudo
+     * @return User
      */
     public function setPseudo(string $pseudo): self
     {

@@ -19,6 +19,7 @@ class UserController extends AbstractController
         ]);
     }
 
+
     /**
      *information user
      * @param int $id
@@ -30,7 +31,7 @@ class UserController extends AbstractController
             $this->index();
         }
         else {
-            $this->render('user/show-user', [
+            $this->render('user/show.user', [
                 'user' => UserManager::getUserById($id),
             ]);
         }
@@ -140,7 +141,7 @@ class UserController extends AbstractController
 
             $user = UserManager::getUserByMail($mail);
             if (null === $user) {
-                $_SESSION['errors'][] = $errorMessage;
+                $_SESSION['errors'] = $errorMessage;
             }
             else {
                 if (password_verify($password, $user->getPassword())) {

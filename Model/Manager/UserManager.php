@@ -7,10 +7,6 @@ use DataBase;
 use creepy\Model\Entity\User;
 
 
-
-
-
-
 class UserManager {
     public const TABLE = 'cb_user';
 
@@ -28,11 +24,6 @@ class UserManager {
         return $users;
     }
 
-
-
-    public static function getUser() {
-
-    }
 
 
     public static function addUser(user & $user): bool {
@@ -58,18 +49,42 @@ class UserManager {
 
     }
 
-    private static function makeUser(array $data): User
-    {
+    /*
+     * @param array $data
+     */
+    private static function makeUser(array $data): User {
         $user = (new User())
             ->setId($data['id'])
             ->setLastname($data['lastname'])
             ->setFirstname($data['firstname'])
             ->setPseudo($data['pseudo'])
             ->setEmail($data['email'])
-            ->setPassword($data['password'])
-            ->setRoleFk($data['Role_fk']);
+            ->setPassword($data['password']);
+
 
         return $user->setRoleFk(RoleManager::getRoleByUser($user));
+    }
+
+    /**
+     * verify user exist
+     * @param int $id
+     * @return bool
+     */
+    public static function userExists(int $id): bool
+    {
+        $result = DataBase::DataConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");
+        return $result ? $result->fetch()['cnt'] : 0;
+    }
+
+    /**
+     * return user by id
+     * @param int $id
+     * @return User|null
+     */
+    public static function getUserById(int $id): ?User
+    {
+        $result = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE . " WHERE id = $id");
+        return $result ? self::makeUser($result->fetch()) : null;
     }
 
     /**
@@ -89,7 +104,7 @@ class UserManager {
      */
     public static function getUserByMail(string $mail): ?User
     {
-        $stmt = DataBase::DataConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE email = :email ");
+        $stmt = DataBase::DataConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE email = :email");
         $stmt->bindParam(':email', $mail);
         return $stmt->execute() ? self::makeUser($stmt->fetch()) : null;
     }

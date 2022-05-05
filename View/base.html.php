@@ -12,14 +12,17 @@
 <div id="container">
     <div id="bande">
         <div id="title">CREEPY BLOG</div>
-        <div id="center"></div>
+        <div id="center">
+
+        </div>
         <div id="log">
             <div>
                 <a href="/index.php?c=user&a=register">Inscription</a>
             </div>
             <div><a href="/index.php?c=user&a=connect">Connexion</a>
             </div>
-            <div><a href="/index.php?c=user&a=disconnect">Deconnexion</a>
+
+            <div><a href="/index.php?c=user&a=disconnected">Deconnexion</a>
             </div>
         </div>
     </div>
@@ -44,7 +47,7 @@
         $message = $_SESSION['success'];
         unset($_SESSION['success']);
         ?>
-        <div class="alert alert-success"><?= $message ?></div> <?php
+        <div class="alert alert-success"><?= $message ?>cool</div> <?php
     }
     ?>
     <div id="container-body">
@@ -54,10 +57,10 @@
                      <a href="/index.php?c=home">Accueil</a>
                  </div>
                     <div class="link second">
-                        <a href="/index.php?c=user">Name</a>
+                        <a href="/index.php?c=user">Profil</a>
                     </div>
                     <div class="link second">
-                        <a href="/index.php?c=article">Article</a>
+                        <a href="/index.php?c=article&a=list-article">Article</a>
                     </div>
                     <div class="link second">
                         <a href="">Galerie</a>

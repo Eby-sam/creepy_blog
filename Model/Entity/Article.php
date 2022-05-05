@@ -8,7 +8,7 @@ class Article extends AbstractEntity {
 
     private string $title;
     private string $content;
-    private string $user_fk;
+    private User $user_fk;
     private string $comment_fk;
 
     /**
@@ -46,17 +46,18 @@ class Article extends AbstractEntity {
     }
 
     /**
-     * @return string
+     * @return User
      */
-    public function getUserFk(): string
+    public function getUserFk(): User
     {
         return $this->user_fk;
     }
 
     /**
-     * @param string $user_fk
+     * @param User $user_fk
+     * @return Article
      */
-    public function setUserFk(string $user_fk): self
+    public function setUserFk(User $user_fk): self
     {
         $this->user_fk = $user_fk;
         return $this;
@@ -72,6 +73,7 @@ class Article extends AbstractEntity {
 
     /**
      * @param string $comment_fk
+     * @return Article
      */
     public function setCommentFk(string $comment_fk): self
     {
