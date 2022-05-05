@@ -20,19 +20,22 @@
             <div>
                 <div>MES ARTICLE</div>
                 <div></div>
+
+
+                <br><br><br><br><br>
+
+
+
             </div>
             <div>
+                <h3 style="text-align: center">User</h3>
                 <?php
                 foreach ($data['users_list'] as $user) {
                     /* @var User $user */ ?>
                         <div>
-                            <div>
-                                <p><?= $user->getId() ?></p>
-                                <a href="/index.php?c=user&a=show-user"><?= $user->getPseudo() ?></a>
-                            </div>
-                            <div>
-                                <a href="/index.php?c=user&a=show-user=<?= $user->getId() ?>">Voir plus</a>
-                                <a href="/index.php?c=user&a=delete-user=<?= $user->getId() ?>">Supprimer</a>
+                            <div style="display: flex; justify-content: space-between">
+                                <a href="/index.php?c=user&a=show-user&id<?= $user->getId() ?>"><?= $user->getPseudo() ?></a>
+                                <a href="/index.php?c=user&a=delete-user&id<?= $user->getId() ?>">Supprimer</a>
                             </div>
                         </div>
                      <?php

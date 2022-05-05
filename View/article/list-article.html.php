@@ -1,8 +1,6 @@
 <?php
     use creepy\Controller\AbstractController;
     use creepy\Model\Entity\Article;
-//use creepy\Model\Entity\Comment;
-use creepy\Model\Manager\CommentManager;
     $articles = $data['articles'];
 ?>
 <div id="container-article">
@@ -19,7 +17,7 @@ use creepy\Model\Manager\CommentManager;
                 <p class="content"><?= $article->getContent() ?></p>
                 <div class="author">
                     <h4 >Autheur : <span class="spanAut"><?= $article->getUserFk()->getPseudo() ?></span></h4>
-                    <a href="">Voir</a>
+                    <a href="/index.php?c=article&a=show-article&id">Voir</a>
                 </div>
 
                 </div><?php
@@ -41,5 +39,4 @@ use creepy\Model\Manager\CommentManager;
             </form>
         </div>
     </div>
-
 </div>

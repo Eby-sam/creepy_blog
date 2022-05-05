@@ -76,7 +76,7 @@ abstract class AbstractController
     {
         if(!self::verifyUserConnect()) {
             $this->render('home/index');
-            echo "Vous n'avez pas la permission de publié un article (role insufisant)";
+            echo "Vous devez vous connecté";
         }
     }
 
@@ -90,10 +90,8 @@ abstract class AbstractController
             $user = $_SESSION['user'];
 
             foreach ($user->getRole() as $role) {
-
-
                 $currentRole = $role->getRoleName();
-                if ($currentRole === 'ADMIN') {
+                if ($currentRole === 'ADMIN' || $currentRole === 'AUTHOR') {
                     return true;
                 }
             }

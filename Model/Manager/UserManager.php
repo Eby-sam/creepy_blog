@@ -77,6 +77,23 @@ class UserManager {
     }
 
     /**
+     * function get role by Id .
+     */
+    public static function getById (int $id): Role {
+        $role = new Role();
+        $request = DataBase::DataConnect()->query("
+            SELECT * FROM role WHERE id = :id
+        ");
+        $request->bindValue(':id', $id);
+        $request->execute();
+        if($roleData  = $request->fetch()) {
+            $role->setId($roleData['id']);
+            $role->setRoleName($roleData['role_name']);
+        }
+        return $role;
+    }
+
+    /**
      * return user by id
      * @param int $id
      * @return User|null
@@ -107,5 +124,14 @@ class UserManager {
         $stmt = DataBase::DataConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE email = :email");
         $stmt->bindParam(':email', $mail);
         return $stmt->execute() ? self::makeUser($stmt->fetch()) : null;
+    }
+
+    public static function deleteUser(User $user): bool {
+        if(self::userExists($user->getId())) {
+            return DataBase::DataConnect()->exec("
+            DELETE FROM " . self::TABLE . " WHERE id = {$user->getId()}
+        ");
+        }
+        return false;
     }
 }

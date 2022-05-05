@@ -2,7 +2,6 @@
 
 namespace creepy\Routing;
 
-use creepy\Routing\AbstractRouter;
 use creepy\Controller\ErrorController;
 use creepy\Controller\UserController;
 
@@ -24,11 +23,11 @@ class UserRouter extends AbstractRouter
             case 'register':
                 $controller->register();
                 break;
-            case 'connect':
-                $controller->connect();
-                break;
             case 'disconnected':
                 $controller->disconnected();
+                break;
+            case 'connected':
+                $controller->connect();
                 break;
             default:
                 (new ErrorController())->error404($action);

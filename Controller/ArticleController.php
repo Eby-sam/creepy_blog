@@ -22,6 +22,13 @@ class ArticleController extends AbstractController
      * add an item
      * @return void
      */
+
+    public function showArticle() {
+        $this->render('article/show-article', [
+            'articles' => ArticleManager::getArticleById(1)
+        ]);
+    }
+
     public function addArticle()
     {
         self::redirectIfNotConnected();
@@ -43,7 +50,7 @@ class ArticleController extends AbstractController
             $article
                 ->setTitle($title)
                 ->setContent($content)
-                ->setAuthor($user)
+                ->setUserFk($user)
             ;
 
             if(ArticleManager::addNewArticle($article, $title, $content, $_SESSION['user']->getId())) {

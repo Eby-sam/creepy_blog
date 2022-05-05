@@ -19,7 +19,6 @@ class UserController extends AbstractController
         ]);
     }
 
-
     /**
      *information user
      * @param int $id
@@ -31,7 +30,7 @@ class UserController extends AbstractController
             $this->index();
         }
         else {
-            $this->render('user/show.user', [
+            $this->render('user/show-user', [
                 'user' => UserManager::getUserById($id),
             ]);
         }
