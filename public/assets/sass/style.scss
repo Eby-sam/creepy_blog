@@ -33,6 +33,13 @@ body {
       #center {
         width: 40%;
         height: 100%;
+
+        h3 {
+          color: #d50a0a;
+          padding: 5px;
+          font-style: italic;
+          font-size: 1.5rem;
+        }
       }
 
       #log {
@@ -73,6 +80,8 @@ body {
         height: 100%;
         margin-left: auto;
         margin-right: auto;
+
+
 
         a {
           text-decoration: none;
@@ -194,8 +203,46 @@ body {
             height: 100%;
             border: 5px solid #a50606;
             border-radius: 15px;
-            display: flex;
-            flex-wrap: wrap;
+
+            #pseudo {
+              text-align: center;
+              margin-top: 5px;
+            }
+            #infoUtil {
+              margin-left: auto;
+              margin-right: auto;
+              width: 80%;
+              height: 15%;
+              border: 1px solid black;
+              margin-top: 15px;
+
+
+              #identity {
+                width: 80%;
+                height: 15%;
+                display: flex;
+                flex-direction: row;
+
+                div {
+                  width: 50%;
+                  padding: 5px;
+
+                  span {
+                    color: #a50606;
+                  }
+                }
+              }
+              #divMail {
+                width: 80%;
+                height: 10%;
+                padding: 5px;
+                margin-top: 5px;
+
+                span {
+                  color: #a50606;
+                }
+              }
+            }
           }
           #user-article {
             width: 30%;

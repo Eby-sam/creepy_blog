@@ -1,3 +1,10 @@
+<?php
+use creepy\Controller\AbstractController;
+use creepy\Model\Entity\User;
+use creepy\Model\Entity\Role;
+use creepy\Model\Manager\UserManager;
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,7 +20,7 @@
     <div id="bande">
         <div id="title">CREEPY BLOG</div>
         <div id="center">
-
+            <h3 id="pseudoUser"><?= UserManager::getUserById($_SESSION['user']->getId())->getPseudo() ?></h3>
         </div>
         <div id="log">
             <div>
@@ -27,10 +34,6 @@
         </div>
     </div>
     <?php
-
-    use creepy\Controller\AbstractController;
-    use creepy\Controller\UserController;
-    use creepy\Model\Entity\Role;
 
     // error messages.
     if (isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) {

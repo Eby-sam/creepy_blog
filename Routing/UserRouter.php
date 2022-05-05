@@ -26,7 +26,7 @@ class UserRouter extends AbstractRouter
             case 'disconnected':
                 $controller->disconnected();
                 break;
-            case 'connected':
+            case 'connect':
                 $controller->connect();
                 break;
             default:

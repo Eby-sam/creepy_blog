@@ -1,6 +1,8 @@
 <?php
     use creepy\Controller\AbstractController;
     use creepy\Model\Entity\User;
+    use creepy\Model\Entity\Role;
+    use creepy\Model\Manager\UserManager;
 
 ?>
 <div id="container-user">
@@ -9,11 +11,17 @@
     </div>
     <div class="profil">
         <div id="info-user">
-            <div>
-                <h2></h2>
+            <div id="pseudo">
+                <h2 class="userPseudo"><?=UserManager::getUserById($_SESSION['user']->getId())->getPseudo() ?></h2>
             </div>
-            <div>
-
+            <div id="infoUtil">
+                <div id="identity">
+                    <div>Nom : <span><?=UserManager::getUserById($_SESSION['user']->getId())->getLastname() ?></span> </div>
+                    <div>Prenom : <span><?=UserManager::getUserById($_SESSION['user']->getId())->getFirstname() ?></span></div>
+                </div>
+               <div id="divMail">
+                   <p>Email : <span><?=UserManager::getUserById($_SESSION['user']->getId())->getEmail() ?></span></p>
+               </div>
             </div>
         </div>
         <div id="user-article">

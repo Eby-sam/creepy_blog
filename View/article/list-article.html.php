@@ -12,14 +12,13 @@
             foreach ($articles as $article) {
                 ?>
                 <div class="article">
-                <h3 class="title"><?= $article->getTitle() ?></h3>
-                <br>
-                <p class="content"><?= $article->getContent() ?></p>
-                <div class="author">
-                    <h4 >Autheur : <span class="spanAut"><?= $article->getUserFk()->getPseudo() ?></span></h4>
-                    <a href="/index.php?c=article&a=show-article&id">Voir</a>
-                </div>
-
+                    <h3 class="title"><?= $article->getTitle() ?></h3>
+                    <br>
+                    <p class="content"><?= $article->getContent() ?></p>
+                    <div class="author">
+                        <h4>Autheur : <span class="spanAut"><?= $article->getUserFk()->getPseudo() ?></span></h4>
+                        <a href="/index.php?c=article&a=show-article&id=<?= $article->getId() ?>">Voir</a>
+                    </div>
                 </div><?php
             } ?>
 

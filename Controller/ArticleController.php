@@ -23,9 +23,9 @@ class ArticleController extends AbstractController
      * @return void
      */
 
-    public function showArticle() {
+    public function showArticle(int $id) {
         $this->render('article/show-article', [
-            'articles' => ArticleManager::getArticleById(1)
+            'articles' => ArticleManager::getArticleById($id)
         ]);
     }
 
@@ -36,7 +36,6 @@ class ArticleController extends AbstractController
         if (!self::verifyRole()) {
             header('Location: /index.php?c=list-article');
         }
-
 
         if($this->verifyFormSubmit()) {
             $userSession = $_SESSION['user'];
@@ -57,7 +56,6 @@ class ArticleController extends AbstractController
                 header('Location: /index.php?c=article&a=list-article');
             }
         }
-
         $this->render('article/add-article');
     }
 

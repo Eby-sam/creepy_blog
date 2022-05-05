@@ -27,6 +27,12 @@ body #container #bande #center {
   width: 40%;
   height: 100%;
 }
+body #container #bande #center h3 {
+  color: #d50a0a;
+  padding: 5px;
+  font-style: italic;
+  font-size: 1.5rem;
+}
 body #container #bande #log {
   width: 25%;
   height: 100%;
@@ -170,8 +176,40 @@ body #container-body .container #container-user .profil #info-user {
   height: 100%;
   border: 5px solid #a50606;
   border-radius: 15px;
+}
+body #container-body .container #container-user .profil #info-user #pseudo {
+  text-align: center;
+  margin-top: 5px;
+}
+body #container-body .container #container-user .profil #info-user #infoUtil {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  height: 15%;
+  border: 1px solid black;
+  margin-top: 15px;
+}
+body #container-body .container #container-user .profil #info-user #infoUtil #identity {
+  width: 80%;
+  height: 15%;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+}
+body #container-body .container #container-user .profil #info-user #infoUtil #identity div {
+  width: 50%;
+  padding: 5px;
+}
+body #container-body .container #container-user .profil #info-user #infoUtil #identity div span {
+  color: #a50606;
+}
+body #container-body .container #container-user .profil #info-user #infoUtil #divMail {
+  width: 80%;
+  height: 10%;
+  padding: 5px;
+  margin-top: 5px;
+}
+body #container-body .container #container-user .profil #info-user #infoUtil #divMail span {
+  color: #a50606;
 }
 body #container-body .container #container-user .profil #user-article {
   width: 30%;
