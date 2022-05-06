@@ -1,11 +1,14 @@
 <?php
     use creepy\Controller\AbstractController;
-    use creepy\Model\Entity\Article;
-    $articles = $data['articles'];
+use creepy\Controller\UserController;
+use creepy\Model\Entity\Article;
+use creepy\Model\Entity\User;
+
+$articles = $data['articles'];
 ?>
 <div id="container-article">
     <div class="divTitle">
-        <h1>Liste des Articles</h1>
+        <h1>Creepy Pasta</h1>
     </div>
     <div id="container-global">
         <div id="article-show"><?php
@@ -23,19 +26,6 @@
             } ?>
 
         </div>
-        <div class="articleForm">
-            <h3 style="text-align: center">Ajoutez un article</h3>
-            <form action="/index.php?c=article&a=list-article" method="post" id="">
-                <div>
-                    <input type="text" placeholder="Titre de l'article">
-                </div>
-                <div>
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Texte de l'article"></textarea>
-                </div>
-                <div>
-                    <input type="submit" value="créer">
-                </div>
-            </form>
-        </div>
+
     </div>
 </div>

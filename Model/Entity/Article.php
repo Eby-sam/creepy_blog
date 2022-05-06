@@ -9,7 +9,6 @@ class Article extends AbstractEntity {
     private string $title;
     private string $content;
     private User $user_fk;
-    private string $comment_fk;
 
     /**
      * @return string
@@ -21,6 +20,7 @@ class Article extends AbstractEntity {
 
     /**
      * @param string $title
+     * @return Article
      */
     public function setTitle(string $title): self
     {
@@ -60,24 +60,6 @@ class Article extends AbstractEntity {
     public function setUserFk(User $user_fk): self
     {
         $this->user_fk = $user_fk;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCommentFk(): string
-    {
-        return $this->comment_fk;
-    }
-
-    /**
-     * @param string $comment_fk
-     * @return Article
-     */
-    public function setCommentFk(string $comment_fk): self
-    {
-        $this->comment_fk = $comment_fk;
         return $this;
     }
 

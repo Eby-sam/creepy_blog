@@ -34,7 +34,7 @@ class ArticleController extends AbstractController
         self::redirectIfNotConnected();
         self::verifyRole();
         if (!self::verifyRole()) {
-            header('Location: /index.php?c=list-article');
+            header('Location: /index.php?c=home');
         }
 
         if($this->verifyFormSubmit()) {
@@ -56,7 +56,7 @@ class ArticleController extends AbstractController
                 header('Location: /index.php?c=article&a=list-article');
             }
         }
-        $this->render('article/add-article');
+        $this->render('user/index');
     }
 
     /**

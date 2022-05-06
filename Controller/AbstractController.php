@@ -44,6 +44,7 @@ abstract class AbstractController
         return isset($_SESSION['user']) && null !== ($_SESSION['user'])->getId();
     }
 
+
     /**
      * @return void
      */
@@ -88,12 +89,23 @@ abstract class AbstractController
     {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
-
-            foreach ($user->getRole() as $role) {
-                $currentRole = $role->getRoleName();
-                if ($currentRole === 'ADMIN' || $currentRole === 'AUTHOR') {
-                    return true;
+            if($user->getRoleFk()->getRoleName() === 'ADMIN' || $user->getRoleFk()->getRoleName() === 'AUTHOR') {
+                return true;
                 }
+            }
+        return false;
+    }
+
+    /**
+     * check role
+     * @return bool
+     */
+    public static function verifyAdminRole(): bool
+    {
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            if($user->getRoleFk()->getRoleName() === 'ADMIN') {
+                return true;
             }
         }
         return false;
