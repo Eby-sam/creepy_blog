@@ -18,7 +18,7 @@ $articles = $data['articles'];
                     <h3 class="title"><?= $article->getTitle() ?></h3>
                     <br>
                     <div class="content">
-                        <p ><?=  nl2br($article->getContent()) ?></p>
+                        <p ><?=  nl2br(html_entity_decode($article->getContent())) ?></p>
                     </div>
                     <div class="author">
                         <h4>Autheur : <span class="spanAut"><?= $article->getUserFk()->getPseudo() ?></span></h4>

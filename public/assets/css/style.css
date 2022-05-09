@@ -146,7 +146,6 @@ body #container-body .container #container-article #container-global #article-sh
 body #container-body .container #container-article #container-global #article-show .article .content {
   max-height: 110px;
   width: 100%;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -237,7 +236,7 @@ body #container-body .container #container-user .profil #info-user #upUse {
 }
 body #container-body .container #container-user .profil #info-user #upUse a {
   text-decoration: none;
-  color: black;
+  color: #e3e3e3;
   font-weight: bold;
 }
 body #container-body .container #container-user .profil #info-user #supUse {
@@ -285,6 +284,14 @@ body #container-body .container #container-user .profil #user-article #userList 
   display: flex;
   justify-content: space-between;
 }
+body #container-body .container #container-user .profil #user-article #userList div div .geting {
+  text-decoration: none;
+  color: #0650a5;
+}
+body #container-body .container #container-user .profil #user-article #userList div div .deleting {
+  text-decoration: none;
+  color: #a50606;
+}
 body #container-body .container #container-user .articleForm {
   width: 90%;
   margin-top: 20px;
@@ -312,7 +319,14 @@ body #container-body .container #container-user .articleForm form div input {
   margin-top: 10px;
 }
 body #container-body .container #container-user .articleForm form div textarea {
-  width: 80%;
+  width: 100%;
+}
+body #container-body .container #container-user .articleForm form div .save {
+  height: 40px;
+  background-color: #21a506;
+  font-size: 1.5rem;
+  color: #e3e3e3;
+  border: none;
 }
 body #container-body .container .container-form {
   background-color: #e3e3e3;

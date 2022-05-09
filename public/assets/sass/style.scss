@@ -168,7 +168,7 @@ body {
               .content {
                 max-height: 110px;
                 width: 100%;
-                white-space: nowrap;
+
                 overflow: hidden;
                 text-overflow: ellipsis;
               }
@@ -271,7 +271,7 @@ body {
 
               a {
                 text-decoration: none;
-                color: black;
+                color: #e3e3e3;
                 font-weight: bold;
               }
             }
@@ -332,6 +332,16 @@ body {
                   width: 100%;
                   display: flex;
                   justify-content: space-between;
+
+                  .geting {
+                    text-decoration: none;
+                    color: #0650a5;
+                  }
+
+                  .deleting{
+                    text-decoration: none;
+                    color: #a50606;
+                  }
                 }
               }
             }
@@ -365,7 +375,14 @@ body {
               }
 
               textarea {
-                width: 80%;
+                width: 100%;
+              }
+              .save {
+                height: 40px;
+                background-color: #21a506;
+                font-size: 1.5rem;
+                color: #e3e3e3;
+                border: none;
               }
             }
           }

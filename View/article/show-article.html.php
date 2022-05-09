@@ -14,13 +14,13 @@ $article = $data['articles'];
         <h1><?= $article->getTitle() ?></h1>
     </div>
     <div id="contentA">
-        <p><?=  nl2br($article->getContent()) ?></p>
+        <p><?=  nl2br(html_entity_decode($article->getContent())) ?></p>
     </div>
     <div id="nameA">
         <h2>Posté par : <span><?= $article->getUserFk()->getPseudo() ?></span></h2>
         <?php
         if (AbstractController::verifyRole()) { ?>
-            <a href=/index.php?c=article&a=list-article&id=<?= $article->getId() ?>"">supprimer l'article</a><?php
+            <a href=/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>"">supprimer l'article</a><?php
         }
         ?>
     </div>
@@ -46,7 +46,7 @@ $article = $data['articles'];
             <div id="place">
                 <p class="commentPseudo"><?= $item->getAuthor()->getPseudo() ?> </p><?php
                 if (AbstractController::verifyUserConnect()) { ?>
-                <a href="/index.php?c=article&a=show-article&id=<?= $item->getId() ?>">Supprimer</a><?php
+                <a href="/index.php?c=comment&a=deleteComment&id=<?= $item->getId() ?>">Supprimer</a><?php
                 }
                 }
                 ?>

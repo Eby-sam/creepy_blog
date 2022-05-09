@@ -62,8 +62,8 @@
                         /* @var User $user */ ?>
                         <div>
                             <div>
-                                <a href="/index.php?c=user&a=show-user&id=<?= $user->getId() ?>"><?= $user->getPseudo() ?></a>
-                                <a href="/index.php?c=user&a=delete-user&id=<?= $user->getId() ?>">Supprimer</a>
+                                <a href="/index.php?c=user&a=show-user&id=<?= $user->getId() ?>" class="geting"><?= $user->getPseudo() ?></a>
+                                <a href="/index.php?c=user&a=delete-user&id=<?= $user->getId() ?>" class="deleting">Supprimer</a>
                             </div>
                         </div>
                         <?php
@@ -82,12 +82,12 @@
                 <form action="/index.php?c=article&a=add-article" method="post" id="">
                     <div>
                         <label for="title"></label>
-                        <input type="text" placeholder="Titre de l'article" id="title" name="title">
+                        <input type="text" placeholder="Titre de l'article" id="title" name="title" required>
 
                     </div>
                     <div>
                         <label for="content"></label>
-                        <textarea name="content" class="content" id="contentUse" cols="30" rows="10" placeholder="Texte de l'article"></textarea>
+                        <textarea name="content" class="content" id="contentUse" cols="30" rows="10" placeholder="Texte de l'article" required></textarea>
                     </div>
                     <div>
                         <input type="submit" value="créer" name="save" class="save">
