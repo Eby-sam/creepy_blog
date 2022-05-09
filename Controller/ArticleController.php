@@ -42,8 +42,10 @@ class ArticleController extends AbstractController
             /* @var User $userSession */
             $user = UserManager::getUserById($userSession->getId());
 
+            $tags = ['a','br','h1','h2','h3','h4','p','cite','ul'];
+            $content = strip_tags($this->getFormField('content'), $tags);
             $title = $this->dataClean($this->getFormField('title'));
-            $content = $this->dataClean($this->getFormField('content'));
+
 
             $article = new Article();
             $article

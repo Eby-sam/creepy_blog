@@ -193,6 +193,28 @@ body {
         }
       }
 
+      //edit article
+
+      #containerEdit {
+        background-color: $color-page;
+        min-height: 100%;
+
+        h1 {
+          text-align: center;
+          margin-top: 15px;
+        }
+
+        #form-editArticle {
+
+
+          form {
+
+
+            #
+          }
+        }
+      }
+
       #container-user {
         background-color: $color-page;
         width: 100%;
@@ -497,7 +519,6 @@ body {
         }
       }
     }
-
   }
 
 }

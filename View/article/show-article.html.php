@@ -20,7 +20,8 @@ $article = $data['articles'];
         <h2>Posté par : <span><?= $article->getUserFk()->getPseudo() ?></span></h2>
         <?php
         if (AbstractController::verifyRole()) { ?>
-            <a href=/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>"">supprimer l'article</a><?php
+            <a href="/index.php?c=article&a=edit-article&id=<?= $article->getId() ?>">Modifié</a>
+            <a href="/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>">supprimer l'article</a><?php
         }
         ?>
     </div>
@@ -46,7 +47,7 @@ $article = $data['articles'];
             <div id="place">
                 <p class="commentPseudo"><?= $item->getAuthor()->getPseudo() ?> </p><?php
                 if (AbstractController::verifyUserConnect()) { ?>
-                <a href="/index.php?c=comment&a=deleteComment&id=<?= $item->getId() ?>">Supprimer</a><?php
+                <a href="/index.php?c=comment&a=delete-comment&id=<?= $item->getId() ?>">Supprimer</a><?php
                 }
                 }
                 ?>
