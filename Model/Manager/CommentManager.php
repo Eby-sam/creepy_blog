@@ -91,6 +91,29 @@ class CommentManager
     }
 
     /**
+     * @param array $data
+     * @return Comment
+     */
+    private static function makeComment(array $data): Comment
+    {
+        return (new Comment())
+            ->setId($data['id'])
+            ->setContent($data['content'])
+            ->setAuthor(UserManager::getUserById($data['user_fk']));
+    }
+
+    /**
+     * retrieve the article by its id
+     * @param int $id
+     * @return Comment
+     */
+    public static function getCommentById(int $id): ?Comment
+    {
+        $result = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE . " WHERE id = $id");
+        return $result ? self::makeComment($result->fetch()) : null;
+    }
+
+    /**
      * retrieve a comment by its id
      * @param Article $article
      * @return array

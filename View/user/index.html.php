@@ -47,15 +47,11 @@
                 </div>
 
 
-
                 <br><br><br><br><br>
-
-
-
             </div>
             <div id="userList">
                 <?php
-                if (UserController::verifyRole()) {?>
+                if (UserController::ifAdmin()) {?>
                     <h3>User List</h3>
                     <?php
                     foreach ($data['users_list'] as $user) {
@@ -75,9 +71,10 @@
 
             </div>
         </div>
+        <?php
+        if (UserController::ifAuthorOrAdmin()) {?>
         <div class="articleForm">
-            <?php
-            if (UserController::verifyRole()) {?>
+
                 <h2>Ajoutez un article</h2>
                 <form action="/index.php?c=article&a=add-article" method="post" id="">
                     <div>

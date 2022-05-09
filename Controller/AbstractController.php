@@ -4,6 +4,8 @@ namespace creepy\Controller;
 use creepy\Model\Entity\Role;
 use creepy\Model\Entity\User;
 use creepy\Model\Entity\Comment;
+use creepy\Model\Manager\ArticleManager;
+use creepy\Model\Manager\CommentManager;
 use creepy\Model\Manager\RoleManager;
 
 abstract class AbstractController
@@ -49,10 +51,23 @@ abstract class AbstractController
      * checks if the user is logged in
      * @return bool
      */
-    public static function verifyUserById(): bool
+//    public static function ifUserIsAuthor(): bool
+//    {
+//        return isset($_SESSION['user']) && null === ($_SESSION['user'])->getId();
+//    }
+
+    public static function isAuthor(int $commentId): bool
     {
-        return isset($_SESSION['user']) && null === ($_SESSION['user'])->getId();
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            $comment = CommentManager::getCommentById($commentId);
+            if($user->getRoleFk()->getRoleName() === 'ADMIN' || $user->getId() === $comment->getAuthor()->getId()) {
+                return true;
+            }
+        }
+        return false;
     }
+
 
 
     /**
@@ -95,7 +110,7 @@ abstract class AbstractController
      * check role
      * @return bool
      */
-    public static function verifyRole(): bool
+    public static function ifAuthorOrAdmin(): bool
     {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
@@ -112,7 +127,7 @@ abstract class AbstractController
      * check role
      * @return bool
      */
-    public static function verifyAdminRole(): bool
+    public static function ifAdmin(): bool
     {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];

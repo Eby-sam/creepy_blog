@@ -85,6 +85,8 @@ class ArticleController extends AbstractController
         $this->index();
     }
 
+
+
     /**
      * edit an article
      * @param int $id

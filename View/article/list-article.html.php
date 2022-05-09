@@ -26,8 +26,6 @@ $articles = $data['articles'];
                     </div>
                 </div><?php
             } ?>
-
         </div>
-
     </div>
 </div>

@@ -19,11 +19,12 @@ $article = $data['articles'];
     <div id="nameA">
         <h2>Posté par : <span><?= $article->getUserFk()->getPseudo() ?></span></h2>
         <?php
-        if (AbstractController::verifyRole()) { ?>
-            <a href="/index.php?c=article&a=edit-article&id=<?= $article->getId() ?>">Modifié</a>
-            <a href="/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>">supprimer l'article</a><?php
-        }
-        ?>
+        if(AbstractController::isAuthor($article->getId()) || AbstractController::ifAdmin() ) {?>
+            <div id="linkArticle">
+                <a href="/index.php?c=article&a=edit-article&id=<?= $article->getId() ?>">Modifier l'article </a>
+                <a href="/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>"> supprimer l'article</a>
+            </div><?php
+        } ?>
     </div>
     <div id="addCom">
         <h3>Ajouter un commentaire</h3>
@@ -33,7 +34,6 @@ $article = $data['articles'];
                     <label for="content"></label>
                     <textarea name="content" id="content" cols="50" rows="10" required></textarea>
                 </div>
-
                 <input type="submit" name="save" value="Enregistrer">
             </form>
         </div>
@@ -41,21 +41,15 @@ $article = $data['articles'];
     <div id="commentArticle">
         <span id="comments">Commentaires :</span>
         <div id="commentUser"><?php
-            foreach (CommentManager::getCommentByArticle($article) as $item) {
-            ?>
-            <div id="commentary"><p><?= $item->getContent() ?></p></div>
-            <div id="place">
-                <p class="commentPseudo"><?= $item->getAuthor()->getPseudo() ?> </p><?php
-                if (AbstractController::verifyUserConnect()) { ?>
-                <a href="/index.php?c=comment&a=delete-comment&id=<?= $item->getId() ?>">Supprimer</a><?php
-                }
-                }
-                ?>
+            foreach (CommentManager::getCommentByArticle($article) as $item) { ?>
+                <div id="commentary"><p><?= $item->getContent() ?></p></div>
+                <div id="place">
+                    <p class="commentPseudo"><?= $item->getAuthor()->getPseudo() ?> </p><?php
+                    if (AbstractController::isAuthor($item->getId())) { ?>
+                        <a href="/index.php?c=comment&a=delete-comment&id=<?= $item->getId() ?>">Supprimer</a><?php
+                    }
+            } ?>
             </div>
         </div>
-
-
     </div>
-
-
 </div>
