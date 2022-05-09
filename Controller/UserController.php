@@ -14,9 +14,14 @@ class UserController extends AbstractController
      */
     public function index()
     {
-        $this->render('user/index', [
-            'users_list' => UserManager::getAllUser()
-        ]);
+        if (UserController::verifyUserConnect()) {
+            $this->render('user/index', [
+                'users_list' => UserManager::getAllUser()
+            ]);
+        }
+        else {
+            header('location: /index.php?c=home');
+        }
     }
 
     /**
@@ -59,6 +64,20 @@ class UserController extends AbstractController
             $deleted = UserManager::deleteUser($user);
         }
         $this->index();
+    }
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function deleteUserConnected(int $id)
+    {
+        if(UserManager::userExists($id)) {
+            $user = UserManager::getUserById($id);
+            $deleted = UserManager::deleteUser($user);
+        }
+        header('location: /index.php?c=home');
+        session_destroy();
     }
 
     /**

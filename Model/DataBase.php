@@ -24,4 +24,5 @@ class DataBase
         }
         return self::$pdo;
     }
+
 }

@@ -78,7 +78,7 @@ class ArticleController extends AbstractController
         if (ArticleManager::articleExists($id)) {
             $article = ArticleManager::getArticleById($id);
             $deleted = ArticleManager::deleteArticle($article);
-            header('Location: /index.php?c=article&a=list-article');
+            header('Location: /index.php?c=home');
         }
         $this->index();
     }

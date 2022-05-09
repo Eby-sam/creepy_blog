@@ -14,6 +14,7 @@ use creepy\Model\Manager\UserManager;
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/ckeditor/ckeditor.js"></script>
     <title>Creepy blog</title>
 </head>
 <body>
@@ -82,22 +83,15 @@ use creepy\Model\Manager\UserManager;
                          <i class="fa fa-user-circle" aria-hidden="true"></i>
                          <a href="/index.php?c=user"><?= UserManager::getUserById($_SESSION['user']->getId())->getPseudo() ?></a>
                      </div>
-                     <div class="link second">
-                         <i class="fa fa-comments" aria-hidden="true"></i>
-                         <a href="">tchat</a>
-                     </div>
                  <?php } ?>
-
                     <div class="link second">
                         <i class="fa fa-book" aria-hidden="true"></i>
                         <a href="/index.php?c=article&a=list-article">Creepy Pasta</a>
                     </div>
                      <div class="link second">
                          <i class="fa fa-picture-o" aria-hidden="true"></i>
-                         <a href="">Galerie</a>
+                         <a href="">SCP</a>
                      </div>
-
-
                 </div>
             </nav>
             <main class="container">

@@ -20,6 +20,9 @@ class UserRouter extends AbstractRouter
             case 'delete-user':
                 self::routeParameters($controller, 'deleteUser', ['id' => 'int']);
                 break;
+            case 'delete-users':
+                self::routeParameters($controller, 'deleteUserConnected', ['id' => 'int']);
+                break;
             case 'register':
                 $controller->register();
                 break;

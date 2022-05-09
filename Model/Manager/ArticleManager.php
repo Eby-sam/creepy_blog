@@ -3,6 +3,7 @@
 namespace creepy\Model\Manager;
 
 use creepy\Model\Entity\Article;
+use creepy\Model\Entity\User;
 use DataBase;
 
 class ArticleManager
@@ -15,7 +16,7 @@ class ArticleManager
     public static function findAll(): array
     {
         $articles = [];
-        $query = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE);
+        $query = DataBase::DataConnect()->query("SELECT * FROM  " . self::TABLE . " ORDER BY id DESC ");
         if ($query) {
             $userManager = new UserManager();
 
@@ -47,10 +48,11 @@ class ArticleManager
             VALUES (:title, :content, :user_fk)
         ");
 
+
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':content', $content);
         $stmt->bindParam(':user_fk', $id);
-
 
         $result = $stmt->execute();
         $article->setId(DataBase::DataConnect()->lastInsertId());
@@ -90,6 +92,27 @@ class ArticleManager
             ->setTitle($data['title'])
             ->setContent($data['content'])
             ->setUserFk(UserManager::getUserById($data['user_fk']));
+    }
+
+    /**
+     * Update an article from article table.
+     * @param int $id
+     * @param string $title
+     * @param string $content
+     * @return bool
+     */
+    public function updateArticle(int $id, string $title, string $content): bool {
+        $request = DataBase::DataConnect()->prepare("
+            UPDATE article SET 
+                title = :title,
+                content = :content
+            WHERE id=:id
+        ");
+
+        $request->bindValue(':title', ($title));
+        $request->bindValue(':content', ($content));
+        $request->bindValue(':id', $id);
+        return $request->execute();
     }
 
     /**

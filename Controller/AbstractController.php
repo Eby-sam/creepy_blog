@@ -3,6 +3,7 @@ namespace creepy\Controller;
 
 use creepy\Model\Entity\Role;
 use creepy\Model\Entity\User;
+use creepy\Model\Entity\Comment;
 use creepy\Model\Manager\RoleManager;
 
 abstract class AbstractController
@@ -42,6 +43,15 @@ abstract class AbstractController
     public static function verifyUserConnect(): bool
     {
         return isset($_SESSION['user']) && null !== ($_SESSION['user'])->getId();
+    }
+
+    /**
+     * checks if the user is logged in
+     * @return bool
+     */
+    public static function verifyUserById(): bool
+    {
+        return isset($_SESSION['user']) && null === ($_SESSION['user'])->getId();
     }
 
 
@@ -96,6 +106,8 @@ abstract class AbstractController
         return false;
     }
 
+
+
     /**
      * check role
      * @return bool
@@ -116,7 +128,7 @@ abstract class AbstractController
      * @param $data
      * @return string
      */
-    public function dataClean($data):string
+    public function dataClean($data): string
     {
         $data = trim(strip_tags($data));
         $data = stripslashes($data);

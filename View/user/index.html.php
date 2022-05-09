@@ -1,7 +1,7 @@
 <?php
     use creepy\Controller\AbstractController;
-use creepy\Controller\UserController;
-use creepy\Model\Entity\User;
+    use creepy\Controller\UserController;
+    use creepy\Model\Entity\User;
     use creepy\Model\Entity\Role;
     use creepy\Model\Manager\UserManager;
 
@@ -23,29 +23,13 @@ use creepy\Model\Entity\User;
                <div id="divMail">
                    <p>Email : <span><?=UserManager::getUserById($_SESSION['user']->getId())->getEmail() ?></span></p>
                </div>
-
             </div>
-            <div class="articleForm">
-                <?php
-                if (UserController::verifyRole()) {?>
-                    <h3 >Ajoutez un article</h3>
-                    <form action="/index.php?c=user" method="post" id="">
-                        <div>
-                            <input type="text" placeholder="Titre de l'article">
-                        </div>
-                        <div>
-                            <textarea name="" id="" cols="30" rows="10" placeholder="Texte de l'article"></textarea>
-                        </div>
-                        <div>
-                            <input type="submit" value="créer" name="save" class="save">
-                        </div>
-                    </form>
-                    <?php
-                } else { ?>
-                <?php }
-                ?>
-
-
+            <br><br>
+            <div id="upUse">
+                <a href="">Modifié mes information</a>
+            </div>
+            <div id="supUse">
+                <a href="/index.php?c=user&a=delete-users&id=<?= $_SESSION['user']->getId() ?>">supprimer mon compte</a>
             </div>
         </div>
         <div id="user-article">
@@ -59,9 +43,7 @@ use creepy\Model\Entity\User;
                     <p>
                         premierement assurez-vous de ne donnée a personnes vos information personnel tel que :
                     </p>
-                    <p>
-                        mot de passe
-                    </p>
+                    <p>mot de passe, numéro de telephone, nom et prenom </p>
                 </div>
 
 
@@ -80,8 +62,8 @@ use creepy\Model\Entity\User;
                         /* @var User $user */ ?>
                         <div>
                             <div>
-                                <a href="/index.php?c=user&a=show-user&id<?= $user->getId() ?>"><?= $user->getPseudo() ?></a>
-                                <a href="/index.php?c=user&a=delete-user&id<?= $user->getId() ?>">Supprimer</a>
+                                <a href="/index.php?c=user&a=show-user&id=<?= $user->getId() ?>"><?= $user->getPseudo() ?></a>
+                                <a href="/index.php?c=user&a=delete-user&id=<?= $user->getId() ?>">Supprimer</a>
                             </div>
                         </div>
                         <?php
@@ -92,6 +74,31 @@ use creepy\Model\Entity\User;
                 ?>
 
             </div>
+        </div>
+        <div class="articleForm">
+            <?php
+            if (UserController::verifyRole()) {?>
+                <h2>Ajoutez un article</h2>
+                <form action="/index.php?c=article&a=add-article" method="post" id="">
+                    <div>
+                        <label for="title"></label>
+                        <input type="text" placeholder="Titre de l'article" id="title" name="title">
+
+                    </div>
+                    <div>
+                        <label for="content"></label>
+                        <textarea name="content" class="content" id="contentUse" cols="30" rows="10" placeholder="Texte de l'article"></textarea>
+                    </div>
+                    <div>
+                        <input type="submit" value="créer" name="save" class="save">
+                    </div>
+                </form>
+                <?php
+            } else { ?>
+            <?php }
+            ?>
+
+
         </div>
     </div>
 </div>

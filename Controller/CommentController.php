@@ -6,7 +6,7 @@ use creepy\Model\Entity\Comment;
 use creepy\Model\Manager\ArticleManager;
 use creepy\Model\Manager\CommentManager;
 use creepy\Model\Manager\UserManager;
-use User;
+use creepy\Model\Entity\User;
 
 class CommentController extends AbstractController
 {
@@ -31,7 +31,8 @@ class CommentController extends AbstractController
             /* @var User $userSession */
             $user =$userSession->getId();
 
-            $content = $this->dataClean($this->getFormField('content'));
+            $tags = ['a','br','h1','h2','h3','h4','p','cite','ul'];
+            $content = strip_tags($this->getFormField('content'), $tags);
 
             CommentManager::addComment($content,$user,$id);
             header('Location: /index.php?c=article&a=list-article');

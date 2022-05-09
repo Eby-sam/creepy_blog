@@ -10,7 +10,7 @@ use creepy\Model\Entity\User;
 
 class CommentManager
 {
-    public const TABLE = 'comment';
+    public const TABLE = 'cb_comment';
 
     /**
      * @return array

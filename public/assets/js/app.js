@@ -2,6 +2,8 @@ setTimeout(() => {
     document.querySelectorAll('.alert').forEach(error => error.remove());
 }, 5000);
 
+CKEDITOR.replace( 'content' );
+
 function validateForm()
 {
     let email = document.getElementById("email");
@@ -71,3 +73,5 @@ function passwordVerify() {
 
 pass.addEventListener('change',passwordVerify);
 passR.addEventListener('keyup',passwordVerify);
+
+

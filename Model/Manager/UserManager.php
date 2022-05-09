@@ -7,7 +7,8 @@ use DataBase;
 use creepy\Model\Entity\User;
 
 
-class UserManager {
+class UserManager
+{
     public const TABLE = 'cb_user';
 
 
@@ -16,7 +17,7 @@ class UserManager {
         $users = [];
         $result = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE);
 
-        if($result) {
+        if ($result) {
             foreach ($result->fetchAll() as $data) {
                 $users[] = self::makeUser($data);
             }
@@ -25,8 +26,8 @@ class UserManager {
     }
 
 
-
-    public static function addUser(user & $user): bool {
+    public static function addUser(user &$user): bool
+    {
         $stmt = DataBase::DataConnect()->prepare("
             INSERT INTO " . self::TABLE . " (firstname,lastname,pseudo,email,password,role_fk) 
             VALUES (:firstname, :lastname,:pseudo , :email, :password, :role_fk)
@@ -45,14 +46,27 @@ class UserManager {
         return $result;
     }
 
-    public static function delete() {
-
+    /**
+     * delete User
+     * @param User $user
+     * @return bool
+     */
+    public static function deleteUser(User $user): bool
+    {
+        if (self::userExists($user->getId())) {
+            return DataBase::DataConnect()->exec("
+            DELETE FROM " . self::TABLE . " WHERE id = {$user->getId()}
+        ");
+        }
+        return false;
     }
+
 
     /*
      * @param array $data
      */
-    private static function makeUser(array $data): User {
+    private static function makeUser(array $data): User
+    {
         $user = (new User())
             ->setId($data['id'])
             ->setLastname($data['lastname'])
@@ -79,14 +93,15 @@ class UserManager {
     /**
      * function get role by Id .
      */
-    public static function getById (int $id): Role {
+    public static function getById(int $id): Role
+    {
         $role = new Role();
         $request = DataBase::DataConnect()->query("
             SELECT * FROM role WHERE id = :id
         ");
         $request->bindValue(':id', $id);
         $request->execute();
-        if($roleData  = $request->fetch()) {
+        if ($roleData = $request->fetch()) {
             $role->setId($roleData['id']);
             $role->setRoleName($roleData['role_name']);
         }
@@ -124,14 +139,5 @@ class UserManager {
         $stmt = DataBase::DataConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE email = :email");
         $stmt->bindParam(':email', $mail);
         return $stmt->execute() ? self::makeUser($stmt->fetch()) : null;
-    }
-
-    public static function deleteUser(User $user): bool {
-        if(self::userExists($user->getId())) {
-            return DataBase::DataConnect()->exec("
-            DELETE FROM " . self::TABLE . " WHERE id = {$user->getId()}
-        ");
-        }
-        return false;
     }
 }

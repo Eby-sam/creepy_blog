@@ -128,24 +128,31 @@ body #container-body .container #container-article .divTitle {
 }
 body #container-body .container #container-article #container-global {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
 }
 body #container-body .container #container-article #container-global #article-show {
   width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
 }
 body #container-body .container #container-article #container-global #article-show .article {
   width: 100%;
-  max-height: 50vh;
+  max-height: 200px;
   border: 1px solid black;
   margin-top: 5px;
   margin-left: 1%;
   padding: 5px;
 }
+body #container-body .container #container-article #container-global #article-show .article .content {
+  max-height: 110px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 body #container-body .container #container-article #container-global #article-show .article .author {
   width: 100%;
+  height: 30px;
   border-top: 3px solid black;
   display: flex;
   flex-direction: row;
@@ -160,7 +167,7 @@ body #container-body .container #container-article #container-global #article-sh
 body #container-body .container #container-user {
   background-color: #e3e3e3;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 body #container-body .container #container-user .divTitle {
   width: 100%;
@@ -171,12 +178,13 @@ body #container-body .container #container-user .profil {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
   width: 100%;
   height: 90%;
 }
 body #container-body .container #container-user .profil #info-user {
   width: 50%;
-  height: 100%;
+  height: 60vh;
   border: 5px solid #a50606;
   border-radius: 15px;
 }
@@ -214,30 +222,40 @@ body #container-body .container #container-user .profil #info-user #infoUtil #di
 body #container-body .container #container-user .profil #info-user #infoUtil #divMail span {
   color: #a50606;
 }
-body #container-body .container #container-user .profil #info-user .articleForm {
-  width: 100%;
-  margin-top: 10px;
-}
-body #container-body .container #container-user .profil #info-user .articleForm h3 {
-  text-align: center;
-}
-body #container-body .container #container-user .profil #info-user .articleForm form {
-  margin-top: 10px;
-  width: 100%;
-  margin-left: auto;
+body #container-body .container #container-user .profil #info-user #upUse {
+  border: 3px solid black;
+  background-color: #37ba08;
+  width: 60%;
+  height: 50px;
   margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
 }
-body #container-body .container #container-user .profil #info-user .articleForm form div {
-  margin-top: 2px;
+body #container-body .container #container-user .profil #info-user #upUse a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+body #container-body .container #container-user .profil #info-user #supUse {
+  border: 3px solid black;
+  background-color: #ba0808;
+  width: 40%;
+  height: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body #container-body .container #container-user .profil #info-user .articleForm form div input {
-  width: 90%;
-}
-body #container-body .container #container-user .profil #info-user .articleForm form div textarea {
-  width: 90%;
+body #container-body .container #container-user .profil #info-user #supUse a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
 }
 body #container-body .container #container-user .profil #user-article {
   width: 30%;
@@ -266,6 +284,35 @@ body #container-body .container #container-user .profil #user-article #userList 
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+body #container-body .container #container-user .articleForm {
+  width: 90%;
+  margin-top: 20px;
+  border: 3px solid black;
+  margin-bottom: 15px;
+}
+body #container-body .container #container-user .articleForm h2 {
+  text-align: center;
+}
+body #container-body .container #container-user .articleForm form {
+  margin-top: 10px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+body #container-body .container #container-user .articleForm form div {
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body #container-body .container #container-user .articleForm form div input {
+  width: 50%;
+  margin-top: 10px;
+}
+body #container-body .container #container-user .articleForm form div textarea {
+  width: 80%;
 }
 body #container-body .container .container-form {
   background-color: #e3e3e3;
@@ -298,6 +345,60 @@ body #container-body .container .container-form #form-register #register .button
   display: flex;
   justify-content: center;
   align-items: center;
+}
+body #articleView {
+  width: 100%;
+  min-height: 100%;
+  background-color: #e3e3e3;
+  padding: 10px;
+}
+body #articleView #titleA {
+  width: 100%;
+  margin-top: 5px;
+}
+body #articleView #titleA h1 {
+  text-align: center;
+}
+body #articleView #contentA {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  margin-top: 15px;
+}
+body #articleView #nameA {
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+body #articleView #nameA h2 span {
+  color: #a50606;
+  font-style: italic;
+}
+body #articleView #addCom {
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+body #articleView #commentArticle {
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+body #articleView #commentArticle span {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+body #articleView #commentArticle #commentUser {
+  width: 100%;
+}
+body #articleView #commentArticle #commentUser #commentary {
+  width: 60%;
+}
+body #articleView #commentArticle #commentUser #place .commentPseudo {
+  color: red;
 }
 
 /*# sourceMappingURL=style.css.map */

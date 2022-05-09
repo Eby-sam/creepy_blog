@@ -9,7 +9,7 @@ use creepy\Model\Manager\UserManager;
     <div class="divTitle">
         <?php
         if (!UserController::verifyUserConnect()) { ?>
-        <h1>Bonjour bienvenu sur le</h1>
+        <h1>Bonjour et bienvenu sur le</h1>
             <h1>Creepy blog</h1>
 
             <h2> n'hésitez pas a vous inscrire ou vous connectez pour une meilleur expérience</h2>
