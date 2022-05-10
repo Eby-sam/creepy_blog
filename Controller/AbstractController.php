@@ -47,16 +47,7 @@ abstract class AbstractController
         return isset($_SESSION['user']) && null !== ($_SESSION['user'])->getId();
     }
 
-    /**
-     * checks if the user is logged in
-     * @return bool
-     */
-//    public static function ifUserIsAuthor(): bool
-//    {
-//        return isset($_SESSION['user']) && null === ($_SESSION['user'])->getId();
-//    }
-
-    public static function isAuthor(int $commentId): bool
+    public static function isAuthor(int $commentId ): bool
     {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
@@ -68,6 +59,17 @@ abstract class AbstractController
         return false;
     }
 
+    public static function isAuthorArticle(int $articleId): bool
+    {
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            $article = ArticleManager::getArticleById($articleId);
+            if($user->getRoleFk()->getRoleName() === 'ADMIN' || $user->getId() === $article->getUserFk()->getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     /**

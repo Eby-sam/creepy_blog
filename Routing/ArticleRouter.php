@@ -29,6 +29,9 @@ class ArticleRouter extends AbstractRouter
             case 'list-article':
                 $controller->listArticle();
                 break;
+            case 'list-scp-article':
+                $controller->listSCP();
+                break;
             case 'show-article':
                 self::routeParameters($controller, 'showArticle', ['id' => 'int']);
                 break;

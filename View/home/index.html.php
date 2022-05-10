@@ -20,7 +20,7 @@ use creepy\Model\Manager\UserManager;
         <h1>Bienvenue <?= UserManager::getUserById($_SESSION['user']->getId())->getPseudo() ?></h1>
         <?php
         } ?>
-
-
     </div>
+
+
 </div>

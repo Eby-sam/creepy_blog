@@ -1,14 +1,14 @@
 <?php
     use creepy\Controller\AbstractController;
-use creepy\Controller\UserController;
-use creepy\Model\Entity\Article;
-use creepy\Model\Entity\User;
+    use creepy\Controller\UserController;
+    use creepy\Model\Entity\Article;
+    use creepy\Model\Entity\User;
 
 $articles = $data['articles'];
 ?>
 <div id="container-article">
     <div class="divTitle">
-        <h1>Creepy Pasta</h1>
+        <h1>HORROR</h1>
     </div>
     <div id="container-global">
         <div id="article-show"><?php

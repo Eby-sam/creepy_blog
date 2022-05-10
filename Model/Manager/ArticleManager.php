@@ -3,7 +3,10 @@
 namespace creepy\Model\Manager;
 
 use creepy\Model\Entity\Article;
+use creepy\Model\Entity\Tag;
 use creepy\Model\Entity\User;
+use creepy\Model\Manager\TagManager;
+
 use DataBase;
 
 class ArticleManager
@@ -32,27 +35,48 @@ class ArticleManager
         return $articles;
     }
 
+    /**
+     * @return array
+     */
+    public static function getScp(): array
+    {
+        $articleScp = [];
+        $query = DataBase::DataConnect()->query("SELECT * FROM  "
+            . self::TABLE . " WHERE tag_fk = 2");
+        if ($query) {
+            $userManager = new UserManager();
+
+
+            foreach ($query->fetchAll() as $scpData) {
+                $articleScp[] = (new Article())
+                    ->setId($scpData['id'])
+                    ->setTitle($scpData['title'])
+                    ->setContent($scpData['content'])
+                    ->setUserFk(UserManager::getUserById($scpData['user_fk']));
+            }
+        }
+        return $articleScp;
+    }
+
 
     /**
      * Add article in db.
      * @param Article $article
-     * @param string $title
-     * @param string $content
-     * @param int $id
      * @return void
      */
-    public static function addNewArticle(Article & $article, string $title, string $content, int $id): bool
+    public static function addNewArticle(Article & $article): bool
     {
         $stmt = DataBase::DataConnect()->prepare("
-            INSERT INTO " . self::TABLE . " (title, content, user_fk)
-            VALUES (:title, :content, :user_fk)
+            INSERT INTO " . self::TABLE . " (title, content,tag_fk, user_fk)
+            VALUES (:title ,:content, :tag_fk, :user_fk)
         ");
 
 
 
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':user_fk', $id);
+        $stmt->bindValue(':title', $article->getTitle());
+        $stmt->bindValue(':content', $article->getContent());
+        $stmt->bindValue(':tag_fk', $article->getTagFk()->getId());
+        $stmt->bindValue(':user_fk', $article->getUserFk()->getId());
 
         $result = $stmt->execute();
         $article->setId(DataBase::DataConnect()->lastInsertId());

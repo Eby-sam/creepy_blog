@@ -163,6 +163,55 @@ body #container-body .container #container-article #container-global #article-sh
   color: #a50606;
   font-style: italic;
 }
+body #container-body .container .container-scp {
+  background-color: #e3e3e3;
+  width: 100%;
+  min-height: 100%;
+}
+body #container-body .container .container-scp #titleSCP {
+  text-align: center;
+  width: 100%;
+}
+body #container-body .container .container-scp #titleSCP h1 {
+  padding: 5px;
+}
+body #container-body .container .container-scp .container-global {
+  width: 100%;
+}
+body #container-body .container .container-scp .container-global .article-show {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+body #container-body .container .container-scp .container-global .article-show .article {
+  width: 100%;
+  max-height: 200px;
+  border: 1px solid black;
+  margin-top: 5px;
+  margin-left: 1%;
+  padding: 5px;
+}
+body #container-body .container .container-scp .container-global .article-show .article .content {
+  max-height: 110px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body #container-body .container .container-scp .container-global .article-show .article .author {
+  width: 100%;
+  height: 30px;
+  border-top: 3px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+}
+body #container-body .container .container-scp .container-global .article-show .article .author .spanAut {
+  color: #a50606;
+  font-style: italic;
+}
 body #container-body .container #containerEdit {
   background-color: #e3e3e3;
   min-height: 100%;
@@ -380,26 +429,59 @@ body #container-body .container .container-form h1 {
 body #container-body .container .container-form #form-register {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 body #container-body .container .container-form #form-register #register {
-  width: 20%;
-  height: 40%;
+  width: 35%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  border: 4px solid #070735;
+  border-radius: 10px;
+  margin: 70px auto auto auto;
 }
 body #container-body .container .container-form #form-register #register .div-lab {
-  width: 100%;
-  height: 15%;
+  width: 80%;
+  height: 12%;
   margin-top: 3px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }
 body #container-body .container .container-form #form-register #register .button-inc {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+body #container-body .container .container-form .title {
+  width: 100%;
+}
+body #container-body .container .container-form .title h1 {
+  padding: 5px;
+}
+body #container-body .container .container-form #form-login {
+  width: 100%;
+  height: 100%;
+}
+body #container-body .container .container-form #form-login #login {
+  width: 40%;
+  height: 25%;
+  border: 4px solid #070735;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 70px auto auto auto;
+}
+body #container-body .container .container-form #form-login #login .labConnect {
+  text-align: center;
+  width: 80%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
 }
 body #articleView {
   width: 100%;

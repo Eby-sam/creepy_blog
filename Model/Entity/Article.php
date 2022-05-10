@@ -8,6 +8,7 @@ class Article extends AbstractEntity {
 
     private string $title;
     private string $content;
+    private Tag $tag_fk;
     private User $user_fk;
 
     /**
@@ -38,12 +39,33 @@ class Article extends AbstractEntity {
 
     /**
      * @param string $content
+     * @return Article
      */
     public function setContent(string $content): self
     {
         $this->content = $content;
         return $this;
     }
+
+    /**
+     * @return Tag
+     */
+    public function getTagFk(): Tag
+    {
+        return $this->tag_fk;
+    }
+
+    /**
+     * @param Tag $tag_fk
+     * @return Article
+     */
+    public function setTagFk(Tag $tag_fk): self
+    {
+        $this->tag_fk = $tag_fk;
+        return $this;
+    }
+
+
 
     /**
      * @return User

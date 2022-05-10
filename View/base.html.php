@@ -86,11 +86,15 @@ use creepy\Model\Manager\UserManager;
                  <?php } ?>
                     <div class="link second">
                         <i class="fa fa-book" aria-hidden="true"></i>
-                        <a href="/index.php?c=article&a=list-article">Creepy Pasta</a>
+                        <a href="/index.php?c=article&a=list-article">Story</a>
                     </div>
                      <div class="link second">
-                         <i class="fa fa-picture-o" aria-hidden="true"></i>
-                         <a href="">SCP</a>
+                         <i class="fa fa-book" aria-hidden="true"></i>
+                         <a href="/index.php?c=article&a=list-article">Horror</a>
+                     </div>
+                     <div class="link second">
+                         <i class="fa fa-book" aria-hidden="true"></i>
+                         <a href="/index.php?c=article&a=list-scp-article">SCP</a>
                      </div>
                 </div>
             </nav>

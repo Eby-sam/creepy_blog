@@ -2,11 +2,12 @@
 
 namespace creepy\Controller;
 
+use creepy\Model\Entity\Tag;
 use creepy\Model\Entity\Article;
 use creepy\Model\Manager\ArticleManager;
-use creepy\Model\Manager\CommentManager;
-use creepy\Model\Manager\UserManager;
 use creepy\Model\Entity\User;
+use creepy\Model\Manager\UserManager;
+use creepy\Model\Manager\TagManager;
 
 class ArticleController extends AbstractController
 {
@@ -32,19 +33,21 @@ class ArticleController extends AbstractController
     public function addArticle()
     {
         self::redirectIfNotConnected();
-        self::verifyRole();
-        if (!self::verifyRole()) {
+        self::ifAuthorOrAdmin();
+        if (!self::ifAuthorOrAdmin()) {
             header('Location: /index.php?c=home');
         }
 
         if($this->verifyFormSubmit()) {
             $userSession = $_SESSION['user'];
+            $tagArticle = $_POST['tag'];
             /* @var User $userSession */
             $user = UserManager::getUserById($userSession->getId());
 
             $tags = ['a','br','h1','h2','h3','h4','p','cite','ul'];
-            $content = strip_tags($this->getFormField('content'), $tags);
             $title = $this->dataClean($this->getFormField('title'));
+            $tag = TagManager::getById($tagArticle);
+            $content = strip_tags($this->getFormField('content'), $tags);
 
 
             $article = new Article();
@@ -52,10 +55,11 @@ class ArticleController extends AbstractController
                 ->setTitle($title)
                 ->setContent($content)
                 ->setUserFk($user)
+                ->setTagFk($tag)
             ;
 
-            if(ArticleManager::addNewArticle($article, $title, $content, $_SESSION['user']->getId())) {
-                header('Location: /index.php?c=article&a=list-article');
+            if(ArticleManager::addNewArticle($article)) {
+                header('Location: /index.php?c=article&a=list-scp-article');
             }
         }
         $this->render('user/index');
@@ -68,6 +72,16 @@ class ArticleController extends AbstractController
     public function listArticle() {
         $this->render('article/list-article', [
             'articles' => ArticleManager::findAll(),
+        ]);
+    }
+
+    /**
+     * all articles
+     * @return void
+     */
+    public function listSCP() {
+        $this->render('article/list-scp-article', [
+            'articles' => ArticleManager::getScp(),
         ]);
     }
 

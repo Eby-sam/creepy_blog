@@ -80,11 +80,19 @@
                     <div>
                         <label for="title"></label>
                         <input type="text" placeholder="Titre de l'article" id="title" name="title" required>
+                    </div>
+                    <div>
+                        <label for="tag">Ajoutez un tag</label>
+                        <select id="tag" name="tag">
+                            <option value="3"></option>
+                            <option value="1">horror</option>
+                            <option value="2">scp</option>
 
+                        </select>
                     </div>
                     <div>
                         <label for="content"></label>
-                        <textarea name="content" class="content" id="contentUse" cols="30" rows="10" placeholder="Texte de l'article" required></textarea>
+                        <textarea name="content" class="content" id="contentUse" cols="50" rows="10" placeholder="Texte de l'article" required></textarea>
                     </div>
                     <div>
                         <input type="submit" value="créer" name="save" class="save">
