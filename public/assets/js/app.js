@@ -1,6 +1,6 @@
 setTimeout(() => {
     document.querySelectorAll('.alert').forEach(error => error.remove());
-}, 5000);
+}, 50000);
 
 CKEDITOR.replace( 'content' );
 
@@ -12,15 +12,17 @@ function validateForm()
     let pseudo = document.getElementById("pseudo");
     let password = document.getElementById("password");
     let formRegister = document.getElementById('register');
-    if (document.formRegister.lastname.value !== "")
+
+    if (email.value !== "")
     {
         return true;
     }
     else {
-        alert("Entrez votre nom");
+        alert("Entrez votre email");
         return false;
     }
-    if (document.formRegister.firstname.value !== "")
+
+    if (firstname.value !== "")
     {
         return true;
     }
@@ -29,16 +31,16 @@ function validateForm()
         return false;
     }
 
-    if (document.formRegister.email.value !== "")
+    if (lastname.value !== "")
     {
         return true;
     }
     else {
-        alert("Entrez votre mail");
+        alert("Entrez votre nom de famille");
         return false;
     }
 
-    if (document.formRegister.pseudo.value !== "")
+    if (pseudo.value !== "")
     {
         return true;
     }
@@ -47,7 +49,7 @@ function validateForm()
         return false;
     }
 
-    if (document.formRegister.password.value !== "")
+    if (password.value !== "")
     {
         return true;
     }

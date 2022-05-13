@@ -108,6 +108,26 @@ class UserManager
         return $role;
     }
 
+    public static function updateUser(User $user): bool {
+        $request = DataBase::DataConnect()->prepare("
+            UPDATE cb_user SET 
+                firstname = :firstname,
+                lastname = :lastname, 
+                pseudo = :pseudo, 
+                email = :email, 
+                password = :password 
+            WHERE id=:id
+        ");
+
+        $request->bindValue(':firstname', $user->getFirstname());
+        $request->bindValue(':lastname', $user->getLastname());
+        $request->bindValue(':pseudo', $user->getPseudo());
+        $request->bindValue(':email', $user->getEmail());
+        $request->bindValue(':password', $user->getPassword());
+        $request->bindValue(':id', $user->getId());
+        return $request->execute();
+    }
+
     /**
      * return user by id
      * @param int $id
@@ -140,4 +160,6 @@ class UserManager
         $stmt->bindParam(':email', $mail);
         return $stmt->execute() ? self::makeUser($stmt->fetch()) : null;
     }
+
+    
 }

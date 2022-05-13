@@ -25,6 +25,19 @@ class UserController extends AbstractController
     }
 
     /**
+     * @return void
+     */
+    public function formEdit()
+    {
+        if (UserController::verifyUserConnect()) {
+            $this->render('user/editUser');
+        }
+        else {
+            header('location: /index.php?c=home');
+        }
+    }
+
+    /**
      *information user
      * @param int $id
      * @return void
@@ -47,10 +60,58 @@ class UserController extends AbstractController
      */
     public function editUser(int $id)
     {
-        if (UserManager::userExists($id)) {
-            $user = UserManager::getUserById($id);
+        if(UserManager::userExists($id)) {
+            if(isset($_POST['modif'])) {
+                $error = [];
+                $lastname = $this->dataClean($this->getFormField('lastname'));
+                $firstname = $this->dataClean($this->getFormField('firstname'));
+                $username = $this->dataClean($this->getFormField('pseudo'));
+                $email = filter_var($this->getFormField('email'), FILTER_SANITIZE_EMAIL);
+                $password = $this->dataClean($this->getFormField('password'));
+
+                if (strlen($lastname) <= 3) {
+                    $error[] = "Le nom doit contenir plus de trois caractères.";
+                }
+
+
+                if (strlen($firstname) <= 3) {
+                    $error[] = "Le prenom doit contenir plus de trois caractères.";
+                }
+
+
+                if (strlen($username) <= 3) {
+                    $error[] = "Le pseudo doit contenir plus de trois caractères.";
+                }
+
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $error[] = "L'adresse email n'est pas au bon format.";
+                }
+                if (UserManager::mailExists($email)) {
+                    $error[] = "Adresse email déjà utilisée !";
+                }
+
+                if (!preg_match('/^(?=.*[!@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)) {
+                    $error[] = "Le password ne correspond pas aux critères";
+                }
+
+                if (count($error) > 0) {
+                    $_SESSION['errors'] = $error;
+                } else {
+                    if (!UserManager::mailExists($email)) {
+                        $user = $_SESSION['user'];
+                        $user
+                            ->setLastname($lastname)
+                            ->setFirstname($firstname)
+                            ->setPseudo($username)
+                            ->setEmail($email)
+                            ->setPassword($password);
+                        UserManager::updateUser($user);
+                        header('location: /index.php?c=user');
+                    }
+                }
+            }
         }
-        $this->index();
+        $this->render('user/editUser');
     }
 
     /**

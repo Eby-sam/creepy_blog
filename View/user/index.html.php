@@ -22,11 +22,12 @@
                 </div>
                <div id="divMail">
                    <p>Email : <span><?=UserManager::getUserById($_SESSION['user']->getId())->getEmail() ?></span></p>
+                   <p>Role : <span><?=UserManager::getUserById($_SESSION['user']->getId())->getRoleFk()->getRoleName() ?></span></p>
                </div>
             </div>
             <br><br>
             <div id="upUse">
-                <a href="">Modifié mes information</a>
+                <a href="/index.php?c=user&a=edit-user&id=<?= $_SESSION['user']->getId() ?>">Modifié mes information</a>
             </div>
             <div id="supUse">
                 <a href="/index.php?c=user&a=delete-users&id=<?= $_SESSION['user']->getId() ?>">supprimer mon compte</a>

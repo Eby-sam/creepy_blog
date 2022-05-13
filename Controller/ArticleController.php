@@ -85,6 +85,17 @@ class ArticleController extends AbstractController
         ]);
     }
 
+
+    /**
+     * all articles
+     * @return void
+     */
+    public function listHorror() {
+        $this->render('article/list-horror-article', [
+            'articles' => ArticleManager::getHorror(),
+        ]);
+    }
+
     /**
      * delete an item
      * @param int $id

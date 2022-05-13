@@ -90,7 +90,7 @@ use creepy\Model\Manager\UserManager;
                     </div>
                      <div class="link second">
                          <i class="fa fa-book" aria-hidden="true"></i>
-                         <a href="/index.php?c=article&a=list-article">Horror</a>
+                         <a href="/index.php?c=article&a=list-horror-article">Horror</a>
                      </div>
                      <div class="link second">
                          <i class="fa fa-book" aria-hidden="true"></i>

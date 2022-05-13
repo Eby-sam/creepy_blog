@@ -42,7 +42,30 @@ class ArticleManager
     {
         $articleScp = [];
         $query = DataBase::DataConnect()->query("SELECT * FROM  "
-            . self::TABLE . " WHERE tag_fk = 2");
+            . self::TABLE . " WHERE tag_fk = 2  ORDER  BY id DESC");
+        if ($query) {
+            $userManager = new UserManager();
+
+
+            foreach ($query->fetchAll() as $scpData) {
+                $articleScp[] = (new Article())
+                    ->setId($scpData['id'])
+                    ->setTitle($scpData['title'])
+                    ->setContent($scpData['content'])
+                    ->setUserFk(UserManager::getUserById($scpData['user_fk']));
+            }
+        }
+        return $articleScp;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getHorror(): array
+    {
+        $articleScp = [];
+        $query = DataBase::DataConnect()->query("SELECT * FROM  "
+            . self::TABLE . " WHERE tag_fk = 1 ORDER  BY id DESC ");
         if ($query) {
             $userManager = new UserManager();
 
@@ -102,6 +125,17 @@ class ArticleManager
     public static function getArticleById(int $id): ?Article
     {
         $result = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE . " WHERE id = $id");
+        return $result ? self::makeArticle($result->fetch()) : null;
+    }
+
+    /**
+     * retrieve the article by its id
+     * @param int $id
+     * @return Article|null
+     */
+    public static function getStoryById(int $id): ?Article
+    {
+        $result = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE . " WHERE id = $id LIMIT 1");
         return $result ? self::makeArticle($result->fetch()) : null;
     }
 

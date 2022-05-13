@@ -8,7 +8,7 @@ $articles = $data['articles'];
 ?>
 <div id="container-article">
     <div class="divTitle">
-        <h1>HORROR</h1>
+        <h1>Story</h1>
     </div>
     <div id="container-global">
         <div id="article-show"><?php

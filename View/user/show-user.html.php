@@ -12,9 +12,10 @@ $user = $data['user'];
         <h1>Information d'utilisateur</h1>
     </div>
     <div>
-        <p>ID: <?= $user->getId() ?></p>
-        <p>Email: <?= $user->getEmail() ?></p>
-        <p>Firstname: <?= $user->getFirstname() ?></p>
-        <p>Lastname: <?= $user->getLastname() ?></p>
+        <p>ID : <?= $user->getId() ?></p>
+        <p>Email : <?= $user->getEmail() ?></p>
+        <p>Firstname : <?= $user->getFirstname() ?></p>
+        <p>Lastname : <?= $user->getLastname() ?></p>
+        <p>Role : <?= $user->getRoleFk()->getRoleName() ?></p>
     </div>
 </div>
