@@ -192,6 +192,7 @@ class UserController extends AbstractController
                         $user->setPassword('');
                         $_SESSION['USER'] = $user;
                         header("Location: index.php/?c=home");
+                        UserManager::mailConnect();
                     }
                     else {
                         $_SESSION['errors'] = ["Erreur d'enregistrement"];
