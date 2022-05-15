@@ -19,11 +19,14 @@ abstract class AbstractController
      * @param string $template
      * @param array $data
      * @return void
+     * render function for hmtl page
      */
     public function render(string $template, array $data = [])
     {
+        // speeds up the loading of the page and allows the placement of a header
         ob_start();
         require __DIR__ . '/../View/' . $template . '.html.php';
+        // reads the current contents of the output buffer then clears it
         $html = ob_get_clean();
         require __DIR__ . '/../View/base.html.php';
         exit;
@@ -47,6 +50,11 @@ abstract class AbstractController
         return isset($_SESSION['user']) && null !== ($_SESSION['user'])->getId();
     }
 
+    /*
+   * @return bool
+   * function allowing the AUTHOR
+   * to perform certain actions
+   */
     public static function isAuthor(int $commentId ): bool
     {
         if (isset($_SESSION['user'])) {
@@ -59,6 +67,11 @@ abstract class AbstractController
         return false;
     }
 
+    /*
+     * @return bool
+     * function allowing the author of the article and the admin
+     * to perform certain actions
+     */
     public static function isAuthorArticle(int $articleId): bool
     {
         if (isset($_SESSION['user'])) {
@@ -74,6 +87,7 @@ abstract class AbstractController
 
     /**
      * @return void
+     * redirect logged in user
      */
     public function redirectIfConnected(): void
     {
@@ -99,6 +113,7 @@ abstract class AbstractController
 
     /**
      * @return void
+     * redirects the not logged in user.
      */
     public  function redirectIfNotConnected(): void
     {
@@ -111,6 +126,7 @@ abstract class AbstractController
     /**
      * check role
      * @return bool
+     * security function allowing only the ADMIN and AUTHOR to access ...
      */
     public static function ifAuthorOrAdmin(): bool
     {
@@ -128,6 +144,7 @@ abstract class AbstractController
     /**
      * check role
      * @return bool
+     * security function allowing only the ADMIN to access ...
      */
     public static function ifAdmin(): bool
     {
@@ -147,8 +164,11 @@ abstract class AbstractController
      */
     public function dataClean($data): string
     {
+        // remove html tags
         $data = trim(strip_tags($data));
+        // Remove backslashes from a string
         $data = stripslashes($data);
+        // prevent users from inserting malicious HTML code
         return htmlspecialchars($data);
     }
 }

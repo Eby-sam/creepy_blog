@@ -554,6 +554,13 @@ body #articleView #nameA #linkArticle {
   justify-content: space-around;
   align-items: center;
 }
+body #articleView #instruction {
+  width: 60%;
+  padding: 50px;
+  font-size: 1.2rem;
+  background-color: rgba(78, 78, 78, 0.12);
+  border-radius: 5px;
+}
 body #articleView #addCom {
   margin-top: 15px;
   margin-left: auto;

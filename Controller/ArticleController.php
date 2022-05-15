@@ -22,14 +22,17 @@ class ArticleController extends AbstractController
     /**
      * add an item
      * @return void
+     *
      */
-
     public function showArticle(int $id) {
         $this->render('article/show-article', [
             'articles' => ArticleManager::getArticleById($id)
         ]);
     }
 
+    /*
+     *
+     */
     public function addArticle()
     {
         self::redirectIfNotConnected();
@@ -66,7 +69,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * all articles
+     * Get all articles in database
      * @return void
      */
     public function listArticle() {
@@ -76,7 +79,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * all articles
+     * get all articles of tag SCP
      * @return void
      */
     public function listSCP() {
@@ -87,7 +90,7 @@ class ArticleController extends AbstractController
 
 
     /**
-     * all articles
+     *  get all articles of tag HORROR
      * @return void
      */
     public function listHorror() {

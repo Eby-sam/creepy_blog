@@ -1,14 +1,16 @@
 <?php
 
     use creepy\Controller\AbstractController;
-    use creepy\Model\Entity\Tag;
+use creepy\Controller\UserController;
+use creepy\Model\Entity\Tag;
     use creepy\Model\Entity\Article;
     use creepy\Model\Entity\Comment;
     use creepy\Model\Manager\ArticleManager;
     use creepy\Model\Manager\TagManager;
     use creepy\Model\Manager\CommentManager;
+use creepy\Model\Manager\UserManager;
 
-    /*@var Article $article */
+/*@var Article $article */
     $article = $data['articles'];
 ?>
 <div id="articleView">
@@ -29,31 +31,41 @@
         } ?>
     </div>
     <div id="addCom">
-        <h3>Ajouter un commentaire</h3>
-        <div id="form-addComment">
-            <form action="/index.php?c=comment&a=add-comment&id=<?= $article->getId() ?>" method="post" id="addComment">
-                <div>
-                    <label for="content"></label>
-                    <textarea name="content" id="content" cols="50" rows="10" required></textarea>
-                </div>
-                <input type="submit" name="save" value="Enregistrer">
-            </form>
-        </div>
+        <?php
+        if (!UserController::verifyUserConnect()) {?>
+
+            <div id="instruction">Vous devez être connecté pour accéder aux commentaires</div>
+            <?php
+        }
+        else {?>
+            <h3>Ajouter un commentaire</h3>
+            <div id="form-addComment">
+                <form action="/index.php?c=comment&a=add-comment&id=<?= $article->getId() ?>" method="post" id="addComment">
+                    <div>
+                        <label for="content"></label>
+                        <textarea name="content" id="content" cols="50" rows="10" required></textarea>
+                    </div>
+                    <input type="submit" name="save" value="Enregistrer">
+                </form>
+            </div>
+
     </div>
     <div id="commentArticle">
         <span id="comments">Commentaires :</span>
         <div id="commentUser"><?php
             foreach (CommentManager::getCommentByArticle($article) as $item) { ?>
-                <div id="commentary">
-                    <p><?= $item->getContent() ?></p>
-                </div>
-                <div id="place">
-                    <p class="commentPseudo"><?= $item->getAuthor()->getPseudo() ?> </p><?php
-                    if (AbstractController::isAuthor($item->getId())) { ?>
-                        <a href="/index.php?c=comment&a=delete-comment&id=<?= $item->getId() ?>">Supprimer</a><?php
-                    }
-            } ?>
-                </div>
+            <div id="commentary">
+                <p><?= $item->getContent() ?></p>
+            </div>
+            <div id="place">
+                <p class="commentPseudo"><?= $item->getAuthor()->getPseudo() ?> </p><?php
+                if (AbstractController::isAuthor($item->getId())) { ?>
+                <a href="/index.php?c=comment&a=delete-comment&id=<?= $item->getId() ?>">Supprimer</a><?php
+                }
+                } ?>
+            </div>
         </div>
     </div>
+        <?php } ?>
+
 </div>
