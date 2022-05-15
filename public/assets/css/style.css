@@ -5,15 +5,17 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #e3e3e3;
+}
 body #container {
   width: 100%;
-  height: 100vh;
 }
 body #container #bande {
   width: 100%;
   height: 7vh;
   display: flex;
-  background-color: #323232;
+  background-color: #404040;
   position: fixed;
 }
 body #container #bande .alert {
@@ -31,7 +33,7 @@ body #container #bande .alert-success {
 body #container #bande #title {
   width: 30%;
   height: 100%;
-  color: red;
+  color: #00acfb;
   font-size: 1.4rem;
   display: flex;
   align-items: center;
@@ -42,7 +44,7 @@ body #container #bande #center {
   height: 100%;
 }
 body #container #bande #center h3 {
-  color: #d50a0a;
+  color: #00acfb;
   padding: 5px;
   font-style: italic;
   font-size: 1.5rem;
@@ -73,13 +75,12 @@ body #container #bande #log #deco {
 }
 body #container #bande #log a {
   text-decoration: none;
-  color: red;
+  color: #00acfb;
 }
 body #container-body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 90vh;
 }
 body #container-body #nav {
   background-color: #4e4e4e;
@@ -97,27 +98,26 @@ body #container-body #nav #divNav {
 }
 body #container-body #nav #divNav a {
   text-decoration: none;
-  color: red;
+  color: #00acfb;
 }
 body #container-body #nav #divNav .link {
   color: white;
   width: 100%;
   height: 10%;
-  border-bottom: 1px solid #5f0505;
+  border-bottom: 1px solid #888803;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
 body #container-body #nav #divNav .link i {
-  color: red;
+  color: #00acfb;
 }
 body #container-body #nav #divNav .second {
   margin-top: 1px;
 }
 body #container-body .container {
   width: 90%;
-  height: 95vh;
   margin-top: 7vh;
   margin-left: 10%;
 }
@@ -585,6 +585,47 @@ body #articleView #commentArticle #commentUser #commentary {
 }
 body #articleView #commentArticle #commentUser #place .commentPseudo {
   color: red;
+}
+body .politiqueShow {
+  width: 100%;
+}
+body .politiqueShow .titles {
+  width: 100%;
+}
+body .politiqueShow .titles h1 {
+  text-align: center;
+  padding: 5px;
+}
+body .politiqueShow div {
+  width: 80%;
+  padding: 20px;
+}
+body .politiqueShow div li {
+  margin-left: 20px;
+  margin-top: 5px;
+}
+body footer {
+  width: 100%;
+  background-color: black;
+  margin-top: 23%;
+}
+body footer a {
+  color: #e3e3e3;
+  text-decoration: none;
+}
+body footer #divF {
+  padding: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+body footer #divF .mentions {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 /*

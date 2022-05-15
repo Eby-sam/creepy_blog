@@ -14,7 +14,7 @@ $method = isset($_GET['a']) ? AbstractRouter::secure($_GET['a']) : 'index';
 
 switch ($page) {
     case 'home':
-        HomeRouter::route();
+        HomeRouter::route($method);
         break;
     case 'user':
         UserRouter::route($method);

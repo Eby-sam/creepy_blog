@@ -39,20 +39,4 @@
         <div id="img"></div>
             <?php
         } ?>
-    <div id="homeGet">
-        <div class="getCreepy">
-            <h3>Story</h3>
-            <br>
-            <h3></h3>
-        </div>
-        <div class="getCreepy">
-            <h3>Horror</h3>
-            <br>
-        </div>
-        <div class="getCreepy">
-            <h3>SCP</h3>
-            <br>
-
-        </div>
-    </div>
 </div>

@@ -104,9 +104,18 @@ use creepy\Model\Manager\UserManager;
         </div>
     </div>
 
+    <footer>
+        <div id="divF">
+            <div class="mentions" id="mention">
+                <a href="/index.php?c=home&a=mentions-legales">Mentions légales</a>
+            </div>
+            <div class="mentions" id="politique">
+                <a href="/index.php?c=home&a=politique">Politique de confidentialité</a>
+            </div>
+        </div>
+    </footer>
     <script src="https://kit.fontawesome.com/52cbc63ebe.js" crossorigin="anonymous"></script>
     <script src="/assets/js/app.js"></script>
-
 
 </body>
 </html>

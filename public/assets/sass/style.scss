@@ -1,4 +1,5 @@
 $color-page : #e3e3e3;
+$title : #00acfb;
 
 * {
   margin: 0;
@@ -6,18 +7,18 @@ $color-page : #e3e3e3;
   box-sizing: border-box;
 }
 body {
+  background-color: $color-page;
 
 
   #container {
     width: 100%;
-    height: 100vh;
 
 
     #bande {
       width: 100%;
       height: 7vh;
       display: flex;
-      background-color: #323232;
+      background-color: #404040;
       position: fixed;
 
       .alert {
@@ -38,7 +39,7 @@ body {
       #title {
         width: 30%;
         height: 100%;
-        color: red;
+        color: $title;
         font-size: 1.4rem;
         display: flex;
         align-items: center;
@@ -50,7 +51,7 @@ body {
         height: 100%;
 
         h3 {
-          color: #d50a0a;
+          color: $title;
           padding: 5px;
           font-style: italic;
           font-size: 1.5rem;
@@ -85,7 +86,7 @@ body {
 
         a  {
           text-decoration: none;
-          color: red;
+          color: $title;
         }
       }
     }
@@ -95,7 +96,6 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 90vh;
     #nav {
       background-color: #4e4e4e;
       width: 10%;
@@ -114,20 +114,20 @@ body {
 
         a {
           text-decoration: none;
-          color: red;
+          color: $title;
         }
         .link {
           color: white;
           width: 100%;
           height: 10%;
-          border-bottom: 1px solid #5f0505;
+          border-bottom: 1px solid #888803;
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
           align-items: center;
 
           i {
-            color: red;
+            color: $title;
           }
         }
         .second {
@@ -137,7 +137,6 @@ body {
     }
     .container {
       width: 90%;
-      height: 95vh;
       margin-top: 7vh;
       margin-left: 10%;
 
@@ -718,7 +717,54 @@ body {
       }
     }
   }
+  .politiqueShow {
+    width: 100%;
 
+    .titles {
+      width: 100%;
+
+      h1 {
+        text-align: center;
+        padding: 5px;
+      }
+    }
+    div{
+      width: 80%;
+      padding: 20px;
+
+      li {
+        margin-left: 20px;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  footer {
+    width: 100%;
+    background-color: black;
+    margin-top: 23%;
+
+    a {
+      color: #e3e3e3;
+      text-decoration: none;
+    }
+
+    #divF {
+      padding: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .mentions {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+    }
+  }
 }
 
 /*

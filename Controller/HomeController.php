@@ -11,4 +11,20 @@ class HomeController extends AbstractController
     {
         $this->render('home/index');
     }
+
+    /**
+     * @return void
+     */
+    public function mention()
+    {
+        $this->render('home/mentions-legales');
+    }
+
+    /**
+     * @return void
+     */
+    public function politique()
+    {
+        $this->render('home/politique');
+    }
 }
