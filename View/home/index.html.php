@@ -12,6 +12,7 @@
     use creepy\Model\Manager\TagManager;
     use creepy\Model\Manager\CommentManager;
 
+    $articles = $data['articles'];
 ?>
 
 <div id="container-home">
@@ -39,4 +40,10 @@
         <div id="img"></div>
             <?php
         } ?>
+    <div id="divGet">
+
+        <div id="divHORROR">
+
+        </div>
+    </div>
 </div>

@@ -104,7 +104,7 @@ body #container-body #nav #divNav .link {
   color: white;
   width: 100%;
   height: 10%;
-  border-bottom: 1px solid #888803;
+  border-bottom: 1px solid #023785;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -176,6 +176,7 @@ body #container-body .container #container-article #container-global #article-sh
   width: 100%;
   max-height: 200px;
   border: 1px solid black;
+  border-radius: 5px;
   margin-top: 5px;
   margin-left: 1%;
   padding: 5px;
@@ -225,6 +226,7 @@ body #container-body .container .container-scp .container-global .article-show .
   width: 100%;
   max-height: 200px;
   border: 1px solid black;
+  border-radius: 5px;
   margin-top: 5px;
   margin-left: 1%;
   padding: 5px;
@@ -458,7 +460,6 @@ body #container-body .container #container-user .articleForm form div .save {
 body #container-body .container .container-form {
   background-color: #e3e3e3;
   width: 100%;
-  height: 100%;
 }
 body #container-body .container .container-form h1 {
   text-align: center;
@@ -473,19 +474,23 @@ body #container-body .container .container-form #form-register #register {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  border: 4px solid #070735;
+  border: 1px solid #000000;
   border-radius: 10px;
   margin: 70px auto auto auto;
 }
 body #container-body .container .container-form #form-register #register .div-lab {
   width: 80%;
-  height: 12%;
   margin-top: 3px;
   text-align: center;
   display: flex;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  padding: 2px;
+}
+body #container-body .container .container-form #form-register #register .div-lab input {
+  padding: 5px;
+  border-radius: 8px;
 }
 body #container-body .container .container-form #form-register #register .button-inc {
   display: flex;
@@ -500,18 +505,18 @@ body #container-body .container .container-form .title h1 {
 }
 body #container-body .container .container-form #form-login {
   width: 100%;
-  height: 100%;
+  padding: 70px;
 }
 body #container-body .container .container-form #form-login #login {
   width: 40%;
-  height: 25%;
-  border: 4px solid #070735;
+  border: 1px solid #000000;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  margin: 70px auto auto auto;
+  margin: auto;
+  padding: 10px;
 }
 body #container-body .container .container-form #form-login #login .labConnect {
   text-align: center;
@@ -519,6 +524,14 @@ body #container-body .container .container-form #form-login #login .labConnect {
   height: 30%;
   display: flex;
   flex-direction: column;
+  padding: 2px;
+}
+body #container-body .container .container-form #form-login #login .labConnect input {
+  padding: 5px;
+  border-radius: 8px;
+}
+body #container-body .container .container-form #form-login #login .labConnect .save {
+  margin-top: 6px;
 }
 body #articleView {
   width: 100%;

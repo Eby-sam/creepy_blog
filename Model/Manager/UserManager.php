@@ -161,27 +161,4 @@ class UserManager
         return $stmt->execute() ? self::makeUser($stmt->fetch()) : null;
     }
 
-
-
-    // en developpement ...
-
-
-    public static function mailConnect(int $id)
-    {
-        $user = $_SESSION['user'];
-        $from = 'sam.coquelet@gmail.com';
-        $to = $user->getId($id)->getEmail();
-        $subject = 'inscription réussi';
-        $message = '<a href="http://localhost:8000/index.php?c=home">validé votre inscription</a>';
-        $message = wordwrap($message, 70 ,"\r\n");
-
-        $headers = array(
-
-            'X-Mailer' => 'PHP/'. phpversion(),
-            'Mime-version' => '1.0',
-            'Content-type' => 'text/html; charset=utf-8'
-        );
-
-        mail( $to, $subject, $message, $headers);
-    }
 }

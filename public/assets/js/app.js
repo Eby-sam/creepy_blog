@@ -1,24 +1,25 @@
 setTimeout(() => {
     document.querySelectorAll('.alert').forEach(error => error.remove());
-}, 50000);
+}, 10000);
 
 CKEDITOR.replace( 'content' );
 
+let firstname = document.getElementById("firstname");
+let lastname = document.getElementById("lastname");
+let pseudo = document.getElementById("pseudo");
+let password = document.getElementById("password");
+let formRegister = document.getElementById('register');
 function validateForm()
 {
-    let email = document.getElementById("email");
-    let firstname = document.getElementById("firstname");
-    let lastname = document.getElementById("lastname");
-    let pseudo = document.getElementById("pseudo");
-    let password = document.getElementById("password");
-    let formRegister = document.getElementById('register');
+
+
 
     if (email.value !== "")
     {
         return true;
     }
     else {
-        alert("Entrez votre email");
+        email.innerHTML = "Entrez votre mail"
         return false;
     }
 
@@ -27,7 +28,7 @@ function validateForm()
         return true;
     }
     else {
-        alert("Entrez votre prénom");
+        firstname.innerHTML = "Entrez votre prénom"
         return false;
     }
 
@@ -36,7 +37,7 @@ function validateForm()
         return true;
     }
     else {
-        alert("Entrez votre nom de famille");
+        lastname.innerHTML = "Entrez votre nom de famille"
         return false;
     }
 
@@ -45,7 +46,7 @@ function validateForm()
         return true;
     }
     else {
-        alert("Entrez votre pseudo");
+        pseudo.innerHTML = "Entrez un pseudonyme"
         return false;
     }
 
@@ -54,8 +55,22 @@ function validateForm()
         return true;
     }
     else {
-        alert("Entrez votre mot de passe");
+        password.innerHTML = "Entrez un mot de passe"
         return false;
+    }
+}
+
+// check email
+let email = document.getElementById("email");
+let emailR = document.getElementById('email-repeat');
+
+function mailVerify () {
+    if(email.value !== emailR.value) {
+        emailR.setCustomValidity('Les emails ne correspondent pas');
+    }
+
+    else {
+        emailR.setCustomValidity('');
     }
 }
 
@@ -72,7 +87,11 @@ function passwordVerify() {
         passR.setCustomValidity('');
     }
 }
+// button mail
+email.addEventListener('change',passwordVerify);
+emailR.addEventListener('keyup',passwordVerify);
 
+// button password
 pass.addEventListener('change',passwordVerify);
 passR.addEventListener('keyup',passwordVerify);
 

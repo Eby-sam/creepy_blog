@@ -1,9 +1,11 @@
 <?php
 namespace creepy\Controller;
 
+use creepy\Model\Manager\ArticleManager;
+
+
 class HomeController extends AbstractController
 {
-
     /**
      * @return void
      */

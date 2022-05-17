@@ -154,6 +154,7 @@ class UserController extends AbstractController
             $lastname = $this->dataClean($this->getFormField('lastname'));
             $pseudo = $this->dataClean($this->getFormField('pseudo'));
             $mail = $this->dataClean($this->getFormField('email'));
+            $mailRepeat = $this->dataClean($this->getFormField('email-repeat'));
             $password = $_POST['password'];
             $passwordRepeat = $_POST['password-repeat'];
 
@@ -161,6 +162,10 @@ class UserController extends AbstractController
             $mail = filter_var($mail, FILTER_SANITIZE_EMAIL);
             if(!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
                 $errors[] = "L'adresse mail n'est pas valide";
+            }
+
+            if($mail !== $mailRepeat) {
+                $errors[] = "Les email ne correspondent pas";
             }
 
             if($password !== $passwordRepeat) {
@@ -183,16 +188,32 @@ class UserController extends AbstractController
                     ->setPseudo($pseudo)
                     ->setEmail($mail)
                     ->setPassword(password_hash($password, PASSWORD_DEFAULT))
-                    ->setRoleFk($role);
+                    ->setRoleFk($role)
+                ;
 
+                $subject = 'Inscription réussie';
+                $message = 'hello';
+                $message = wordwrap($message, 70 ,"\r\n");
+
+                $headers = [
+                    'Reply-To' =>  'sam.coquelet@gmail.com',
+                    'X-Mailer' => 'PHP/'. phpversion(),
+                    'Mime-version' => '1.0',
+                    'Content-Type' => 'text/html; charset=utf-8',
+                    "From" => 'sam.coquelet@gmail.com',
+                ];
+
+                mail( $mail, $subject, $message, $headers);
                 if(!UserManager::mailExists($user->getEmail())) {
                     UserManager::addUser($user);
+
                     if(null !== $user->getId()) {
                         $_SESSION['success'] = "Compte activé";
                         $user->setPassword('');
                         $_SESSION['USER'] = $user;
-                        header("Location: index.php/?c=home");
-                        UserManager::mailConnect();
+
+                        header("Location: /index.php/?c=home");
+
                     }
                     else {
                         $_SESSION['errors'] = ["Erreur d'enregistrement"];

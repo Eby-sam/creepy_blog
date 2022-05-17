@@ -133,9 +133,11 @@ class ArticleManager
      * @param int $id
      * @return Article|null
      */
-    public static function getStoryById(int $id): ?Article
+    public static function getSCPById(int $id): ?Article
     {
-        $result = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE . " WHERE id = $id LIMIT 1");
+        $result = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE .
+                                        " WHERE tag_fk = 2 ORDER  BY id DESC = $id LIMIT 1");
+
         return $result ? self::makeArticle($result->fetch()) : null;
     }
 
