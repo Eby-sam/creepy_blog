@@ -124,7 +124,6 @@ body #container-body .container {
 body #container-body .container #container-home {
   background-color: #e3e3e3;
   width: 100%;
-  height: 100%;
 }
 body #container-body .container #container-home .divTitle {
   width: 100%;
@@ -140,19 +139,18 @@ body #container-body .container #container-home #img {
   background-size: contain;
   background-repeat: no-repeat;
 }
-body #container-body .container #container-home #homeGet {
+body #container-body .container #container-home .divGet {
   width: 100%;
-  height: 50px;
+  background-color: #a50606;
+}
+body #container-body .container #container-home .divGet .divStory {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 30px;
 }
-body #container-body .container #container-home #homeGet .getCreepy {
-  width: 20%;
-  text-align: center;
-  border: 3px solid #070735;
+body #container-body .container #container-home .divGet .divStory .article {
+  border: 1px solid black;
 }
 body #container-body .container #container-article {
   background-color: #e3e3e3;

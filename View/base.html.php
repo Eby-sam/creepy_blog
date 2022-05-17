@@ -22,7 +22,6 @@ use creepy\Model\Manager\UserManager;
     <div id="bande">
         <div id="title">CREEPY BLOG</div>
         <div id="center">
-
         </div>
         <div id="log">
             <?php
@@ -40,9 +39,6 @@ use creepy\Model\Manager\UserManager;
                     <a href="/index.php?c=user&a=disconnected">Deconnexion</a>
                 </div>
             <?php } ?>
-
-
-
         </div>
     </div>
     <?php

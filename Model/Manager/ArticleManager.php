@@ -23,7 +23,6 @@ class ArticleManager
         if ($query) {
             $userManager = new UserManager();
 
-
             foreach ($query->fetchAll() as $articleData) {
                 $articles[] = (new Article())
                     ->setId($articleData['id'])
@@ -133,12 +132,24 @@ class ArticleManager
      * @param int $id
      * @return Article|null
      */
-    public static function getSCPById(int $id): ?Article
+    public static function getSCPLimit(): array
     {
-        $result = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE .
-                                        " WHERE tag_fk = 2 ORDER  BY id DESC = $id LIMIT 1");
+        $articleScp = [];
+        $query = DataBase::DataConnect()->query("SELECT * FROM  "
+            . self::TABLE . " ORDER  BY id DESC LIMIT 3");
+        if ($query) {
+            $userManager = new UserManager();
 
-        return $result ? self::makeArticle($result->fetch()) : null;
+
+            foreach ($query->fetchAll() as $scpData) {
+                $articleScp[] = (new Article())
+                    ->setId($scpData['id'])
+                    ->setTitle($scpData['title'])
+                    ->setContent($scpData['content'])
+                    ->setUserFk(UserManager::getUserById($scpData['user_fk']));
+            }
+        }
+        return $articleScp;
     }
 
     /**

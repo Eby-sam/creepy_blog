@@ -1,8 +1,11 @@
 <?php
 namespace creepy\Controller;
 
+use creepy\Model\Entity\Article;
 use creepy\Model\Manager\ArticleManager;
-
+use creepy\Model\Entity\User;
+use creepy\Model\Manager\UserManager;
+use creepy\Model\Manager\TagManager;
 
 class HomeController extends AbstractController
 {
@@ -11,7 +14,9 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $this->render('home/index');
+        $this->render('home/index',[
+            'articles' => ArticleManager::getSCPLimit()
+        ]);
     }
 
     /**
