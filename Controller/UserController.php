@@ -3,8 +3,10 @@
 namespace creepy\Controller;
 
 use creepy\Model\Entity\User;
+use creepy\Model\Manager\ArticleManager;
 use creepy\Model\Manager\RoleManager;
 use creepy\Model\Manager\UserManager;
+use MongoDB\Driver\Manager;
 
 
 class UserController extends AbstractController
@@ -18,8 +20,7 @@ class UserController extends AbstractController
             $this->render('user/index', [
                 'users_list' => UserManager::getAllUser()
             ]);
-        }
-        else {
+        } else {
             header('location: /index.php?c=home');
         }
     }
@@ -31,8 +32,7 @@ class UserController extends AbstractController
     {
         if (UserController::verifyUserConnect()) {
             $this->render('user/editUser');
-        }
-        else {
+        } else {
             header('location: /index.php?c=home');
         }
     }
@@ -44,10 +44,9 @@ class UserController extends AbstractController
      */
     public function showUser(int $id)
     {
-        if(!UserManager::userExists($id)) {
+        if (!UserManager::userExists($id)) {
             $this->index();
-        }
-        else {
+        } else {
             $this->render('user/show-user', [
                 'user' => UserManager::getUserById($id),
             ]);
@@ -60,8 +59,8 @@ class UserController extends AbstractController
      */
     public function editUser(int $id)
     {
-        if(UserManager::userExists($id)) {
-            if(isset($_POST['modif'])) {
+        if (UserManager::userExists($id)) {
+            if (isset($_POST['modif'])) {
                 $error = [];
                 $lastname = $this->dataClean($this->getFormField('lastname'));
                 $firstname = $this->dataClean($this->getFormField('firstname'));
@@ -120,7 +119,7 @@ class UserController extends AbstractController
      */
     public function deleteUser(int $id)
     {
-        if(UserManager::userExists($id)) {
+        if (UserManager::userExists($id)) {
             $user = UserManager::getUserById($id);
             $deleted = UserManager::deleteUser($user);
         }
@@ -133,7 +132,7 @@ class UserController extends AbstractController
      */
     public function deleteUserConnected(int $id)
     {
-        if(UserManager::userExists($id)) {
+        if (UserManager::userExists($id)) {
             $user = UserManager::getUserById($id);
             $deleted = UserManager::deleteUser($user);
         }
@@ -149,7 +148,7 @@ class UserController extends AbstractController
     {
         self::redirectIfConnected();
 
-        if($this->verifyFormSubmit()) {
+        if ($this->verifyFormSubmit()) {
             $firstname = $this->dataClean($this->getFormField('firstname'));
             $lastname = $this->dataClean($this->getFormField('lastname'));
             $pseudo = $this->dataClean($this->getFormField('pseudo'));
@@ -160,26 +159,25 @@ class UserController extends AbstractController
 
             $errors = [];
             $mail = filter_var($mail, FILTER_SANITIZE_EMAIL);
-            if(!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
                 $errors[] = "L'adresse mail n'est pas valide";
             }
 
-            if($mail !== $mailRepeat) {
+            if ($mail !== $mailRepeat) {
                 $errors[] = "Les email ne correspondent pas";
             }
 
-            if($password !== $passwordRepeat) {
+            if ($password !== $passwordRepeat) {
                 $errors[] = "Les password ne correspondent pas";
             }
 
-            if(!preg_match('/^(?=.*[!@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)) {
+            if (!preg_match('/^(?=.*[!@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)) {
                 $errors[] = "Le password ne correspond pas aux critères";
             }
 
-            if(count($errors) > 0) {
+            if (count($errors) > 0) {
                 $_SESSION['errors'] = $errors;
-            }
-            else {
+            } else {
                 $user = new User();
                 $role = RoleManager::getRoleByName('USER');
                 $user
@@ -189,37 +187,40 @@ class UserController extends AbstractController
                     ->setEmail($mail)
                     ->setPassword(password_hash($password, PASSWORD_DEFAULT))
                     ->setRoleFk($role)
-                ;
+                    ->setToken(uniqid() . (new \DateTime())->format('Ydmhis'));
 
                 $subject = 'Inscription réussie';
-                $message = 'hello';
-                $message = wordwrap($message, 70 ,"\r\n");
+                $message = '
+                <html>
+                   <body>
+                         <a href="https://creepy-blog.sam-eby.fr/index.php?c=user&a=validation&token=' . $user->getToken() . '">validation</a>
+                    </body>
+                 </html>';
+                $message = wordwrap($message, 70, "\r\n");
 
                 $headers = [
-                    'Reply-To' =>  'sam.coquelet@gmail.com',
-                    'X-Mailer' => 'PHP/'. phpversion(),
+                    'Reply-To' => 'sam.coquelet@gmail.com',
+                    'X-Mailer' => 'PHP/' . phpversion(),
                     'Mime-version' => '1.0',
                     'Content-Type' => 'text/html; charset=utf-8',
                     "From" => 'sam.coquelet@gmail.com',
                 ];
 
-                mail( $mail, $subject, $message, $headers);
-                if(!UserManager::mailExists($user->getEmail())) {
+                mail($mail, $subject, $message, $headers);
+                if (!UserManager::mailExists($user->getEmail())) {
                     UserManager::addUser($user);
 
-                    if(null !== $user->getId()) {
+                    if (null !== $user->getId()) {
                         $_SESSION['success'] = "Compte activé";
                         $user->setPassword('');
                         $_SESSION['USER'] = $user;
 
                         header("Location: /index.php/?c=home");
 
-                    }
-                    else {
+                    } else {
                         $_SESSION['errors'] = ["Erreur d'enregistrement"];
                     }
-                }
-                else {
+                } else {
                     $_SESSION['errors'] = ["Adresse mail déjà existante"];
                 }
             }
@@ -235,7 +236,7 @@ class UserController extends AbstractController
     {
         self::redirectIfConnected();
 
-        if($this->verifyFormSubmit()) {
+        if ($this->verifyFormSubmit()) {
             $errorMessage = "Données non correctes";
             $mail = $this->dataClean($this->getFormField('email'));
             $password = $this->getFormField('password');
@@ -243,15 +244,19 @@ class UserController extends AbstractController
             $user = UserManager::getUserByMail($mail);
             if (null === $user) {
                 $_SESSION['errors'] = $errorMessage;
-            }
-            else {
-                if (password_verify($password, $user->getPassword())) {
-                    $_SESSION['user'] = $user;
-                    $this->redirectIfConnected();
+            } else {
+                if (!$user->isValidate()) {
+                    $_SESSION['errors'][] = 'Vous devez encore valider votre adresse e mail';
                 }
-                else {
-                    $_SESSION['errors'][] = $errorMessage;
+                if (!password_verify($password, $user->getPassword())) {
+                    $_SESSION['errors'][] = 'Mot de passe incorect';
                 }
+                if ($_SESSION['errors'] > 0) {
+                    $this->index();
+                    die();
+                }
+                $_SESSION['user'] = $user;
+                $this->redirectIfConnected();
             }
         }
 
@@ -264,7 +269,7 @@ class UserController extends AbstractController
      */
     public function disconnected(): void
     {
-        if(self:: verifyUserConnect()) {
+        if (self:: verifyUserConnect()) {
             $_SESSION['user'] = null;
             $_SESSION['messages'] = null;
             $_SESSION['success'] = null;
@@ -272,6 +277,21 @@ class UserController extends AbstractController
             session_destroy();
         }
 
-        $this->render('home/index');
+        $this->render('home/index', [
+            'articles' => ArticleManager::getSCPLimit()
+        ]);
     }
+
+    public function validation(string $token)
+    {
+        if (UserManager::validation($token)) {
+            $_SESSION['success'] = 'félicitation votre mail a bien était validé';
+            $this->render('home/index', [
+                'articles' => ArticleManager::getSCPLimit()
+            ]);
+        }
+
+    }
+
 }
+

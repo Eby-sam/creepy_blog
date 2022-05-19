@@ -14,6 +14,9 @@ class UserRouter extends AbstractRouter
             case 'index':
                 $controller->index();
                 break;
+            case 'validation':
+                self::routeParameters($controller,'validation', ['token'=> 'string']);
+                break;
             case 'show-user':
                 self::routeParameters($controller, 'showUser', ['id' => 'int']);
                 break;

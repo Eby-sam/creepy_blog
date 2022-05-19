@@ -18,7 +18,6 @@ class CommentManager
     public static function findAll(): array
     {
         $comments = [];
-
         $query = DataBase::DataConnect()->query("SELECT * FROM " . self::TABLE . " ORDER BY id DESC");
 
         if ($query) {
@@ -58,7 +57,6 @@ class CommentManager
             INSERT INTO ". self::TABLE. " (content, user_fk, article_fk)
                 VALUES ( :content, :user_fk, :article_fk)
         ");
-
         if (isset($_SESSION['user'])) {
             $user = $_SESSION ['user'];
 

@@ -18,84 +18,79 @@ use creepy\Model\Manager\UserManager;
     <title>Creepy blog</title>
 </head>
 <body>
-<div id="container">
-    <div id="bande">
-        <div id="title">CREEPY BLOG</div>
-        <div id="center">
-        </div>
-        <div id="log">
-            <?php
-            if (!UserController::verifyUserConnect()) {?>
-                <div id="inscri">
-                    <a href="/index.php?c=user&a=register">Inscription</a>
-                </div>
-                <div id="connect">
-                    <a href="/index.php?c=user&a=connect">Connexion</a>
-                </div>
-            <?php
-            }
-            else {?>
-                <div id="deco">
-                    <a href="/index.php?c=user&a=disconnected">Deconnexion</a>
-                </div>
-            <?php } ?>
-        </div>
-    </div>
     <?php
+        // error messages.
+        if (isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
+            $errors = $_SESSION['errors'];
+            unset($_SESSION['errors']);
 
-    // error messages.
-    if (isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
-        $errors = $_SESSION['errors'];
-        unset($_SESSION['errors']);
-
-        foreach ($errors as $error) { ?>
-            <div class="alert alert-error"><?= $error ?></div> <?php
+            foreach ($errors as $error) { ?>
+                <div class="alert alert-error"><?= $error ?></div> <?php
+            }
         }
-    }
-
-    //success messages.
-    if (isset($_SESSION['success'])) {
-        $message = $_SESSION['success'];
-        unset($_SESSION['success']);
-        ?>
-        <div class="alert alert-success"><?= $message ?></div> <?php
-    }
+        //success messages.
+        if (isset($_SESSION['success'])) {
+            $message = $_SESSION['success'];
+            unset($_SESSION['success']);
+            ?>
+            <div class="alert alert-success"><?= $message ?></div> <?php
+        }
     ?>
-    <div id="container-body">
-          <nav id="nav">
-             <div id="divNav">
-                 <div class="link">
+    <div id="container">
+        <div id="bande">
+            <div id="title">CREEPY BLOG</div>
+            <div id="center">
+            </div>
+            <div id="log">
+                <?php
+                if (!UserController::verifyUserConnect()) { ?>
+                    <div id="inscri">
+                        <a href="/index.php?c=user&a=register">Inscription</a>
+                    </div>
+                    <div id="connect">
+                        <a href="/index.php?c=user&a=connect">Connexion</a>
+                    </div>
+                    <?php
+                } else { ?>
+                    <div id="deco">
+                        <a href="/index.php?c=user&a=disconnected">Deconnexion</a>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
 
-                     <a href="/index.php?c=home"><i class="fa fa-home" aria-hidden="true"></i></a>
-                 </div>
-                 <?php
-                 if (!UserController::verifyUserConnect()) {?>
+        <div id="containerBody">
+            <div id="nav">
+                <nav id="divNav">
+                    <div class="link">
+                        <a href="/index.php?c=home"><i class="fa fa-home" aria-hidden="true"></i></a>
+                    </div>
+                    <?php
+                    if (!UserController::verifyUserConnect()) { ?>
 
-                     <?php
-                 }
-                 else {?>
-                     <div class="link second">
-
-                         <i class="fa fa-user-circle" aria-hidden="true"></i>
-                         <a href="/index.php?c=user"><?= UserManager::getUserById($_SESSION['user']->getId())->getPseudo() ?></a>
-                     </div>
-                 <?php } ?>
+                        <?php
+                    } else { ?>
+                        <div class="link second">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            <a href="/index.php?c=user"><?= UserManager::getUserById($_SESSION['user']->getId())->getPseudo() ?></a>
+                        </div>
+                    <?php } ?>
                     <div class="link second">
                         <i class="fa fa-book" aria-hidden="true"></i>
                         <a href="/index.php?c=article&a=list-article">Story</a>
                     </div>
-                     <div class="link second">
-                         <i class="fa fa-book" aria-hidden="true"></i>
-                         <a href="/index.php?c=article&a=list-horror-article">Horror</a>
-                     </div>
-                     <div class="link second">
-                         <i class="fa fa-book" aria-hidden="true"></i>
-                         <a href="/index.php?c=article&a=list-scp-article">SCP</a>
-                     </div>
-                </div>
-            </nav>
+                    <div class="link second">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <a href="/index.php?c=article&a=list-horror-article">Horror</a>
+                    </div>
+                    <div class="link second">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <a href="/index.php?c=article&a=list-scp-article">SCP</a>
+                    </div>
+                </nav>
+            </div>
             <main class="container">
-                    <?= $html ?>
+                <?= $html ?>
             </main>
         </div>
     </div>

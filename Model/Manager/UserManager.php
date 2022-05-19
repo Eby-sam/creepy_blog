@@ -29,8 +29,8 @@ class UserManager
     public static function addUser(user &$user): bool
     {
         $stmt = DataBase::DataConnect()->prepare("
-            INSERT INTO " . self::TABLE . " (firstname,lastname,pseudo,email,password,role_fk) 
-            VALUES (:firstname, :lastname,:pseudo , :email, :password, :role_fk)
+            INSERT INTO " . self::TABLE . " (firstname,lastname,pseudo,email,password,role_fk,token) 
+            VALUES (:firstname, :lastname,:pseudo , :email, :password, :role_fk, :token)
         ");
 
         $stmt->bindValue(':firstname', $user->getFirstname());
@@ -39,6 +39,7 @@ class UserManager
         $stmt->bindValue(':email', $user->getEmail());
         $stmt->bindValue(':password', $user->getPassword());
         $stmt->bindValue(':role_fk', $user->getRoleFk()->getId());
+        $stmt->bindValue(':token', $user->getToken());
 
         $result = $stmt->execute();
         $user->setId(DataBase::DataConnect()->lastInsertId());
@@ -73,7 +74,8 @@ class UserManager
             ->setFirstname($data['firstname'])
             ->setPseudo($data['pseudo'])
             ->setEmail($data['email'])
-            ->setPassword($data['password']);
+            ->setPassword($data['password'])
+            ->setValidate($data['validate']);
 
 
         return $user->setRoleFk(RoleManager::getRoleByUser($user));
@@ -148,6 +150,20 @@ class UserManager
     {
         $result = DataBase::DataConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE email = \"$mail\"");
         return $result ? $result->fetch()['cnt'] : 0;
+    }
+
+
+    public static function validation (string $token)
+    {
+        $request = DataBase::DataConnect()->prepare("
+            UPDATE cb_user SET 
+                validate = 1
+            WHERE token = :token
+        ");
+
+        $request->bindValue(':token', $token);
+
+        return $request->execute();
     }
 
     /**

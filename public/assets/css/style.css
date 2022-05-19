@@ -8,12 +8,25 @@
 body {
   background-color: #e3e3e3;
 }
+body .alert-success {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background-color: limegreen;
+  color: white;
+}
+body .alert-error {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background-color: red;
+  color: white;
+}
 body #container {
   width: 100%;
 }
 body #container #bande {
   width: 100%;
-  height: 7vh;
   display: flex;
   background-color: #404040;
   position: fixed;
@@ -32,7 +45,7 @@ body #container #bande .alert-success {
 }
 body #container #bande #title {
   width: 30%;
-  height: 100%;
+  padding: 15px;
   color: #00acfb;
   font-size: 1.4rem;
   display: flex;
@@ -77,59 +90,69 @@ body #container #bande #log a {
   text-decoration: none;
   color: #00acfb;
 }
-body #container-body {
+body #container #containerBody {
   display: flex;
   flex-direction: row;
   width: 100%;
+  padding-top: 52px;
 }
-body #container-body #nav {
+body #container #containerBody #nav {
   background-color: #4e4e4e;
   width: 10%;
-  height: 95vh;
+  height: 100%;
+  padding: 10px;
   display: inline-block;
-  margin-top: 7vh;
   position: fixed;
 }
-body #container-body #nav #divNav {
+body #container #containerBody #nav #divNav {
   width: 90%;
-  height: 100%;
+  padding: 10px;
   margin-left: auto;
   margin-right: auto;
 }
-body #container-body #nav #divNav a {
+body #container #containerBody #nav #divNav a {
   text-decoration: none;
   color: #00acfb;
 }
-body #container-body #nav #divNav .link {
+body #container #containerBody #nav #divNav .link {
   color: white;
   width: 100%;
-  height: 10%;
+  padding: 15px;
   border-bottom: 1px solid #023785;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
-body #container-body #nav #divNav .link i {
+body #container #containerBody #nav #divNav .link i {
   color: #00acfb;
 }
-body #container-body #nav #divNav .second {
-  margin-top: 1px;
-}
-body #container-body .container {
+body #container #containerBody .container {
   width: 90%;
-  margin-top: 7vh;
   margin-left: 10%;
 }
-body #container-body .container #container-home {
+body #container #containerBody .container #container-home {
   background-color: #e3e3e3;
   width: 100%;
 }
-body #container-body .container #container-home .divTitle {
+body #container #containerBody .container #container-home .divTitle {
   width: 100%;
   text-align: center;
 }
-body #container-body .container #container-home #img {
+body #container #containerBody .container #container-home .divTitle #msg {
+  width: 70%;
+  padding: 10px;
+  background-color: #c6c2c2;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: #3f72e0;
+}
+body #container #containerBody .container #container-home .divTitle #msg h2 {
+  font-size: 1.3rem;
+}
+body #container #containerBody .container #container-home #img {
   margin-right: auto;
   margin-left: auto;
   margin-top: 40px;
@@ -139,38 +162,39 @@ body #container-body .container #container-home #img {
   background-size: contain;
   background-repeat: no-repeat;
 }
-body #container-body .container #container-home .divGet {
+body #container #containerBody .container #container-home .divGet {
+  padding-top: 30px;
   width: 100%;
-  background-color: #a50606;
 }
-body #container-body .container #container-home .divGet .divStory {
+body #container #containerBody .container #container-home .divGet .divStory {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  padding: 40px;
 }
-body #container-body .container #container-home .divGet .divStory .article {
+body #container #containerBody .container #container-home .divGet .divStory .article {
   border: 1px solid black;
 }
-body #container-body .container #container-article {
+body #container #containerBody .container #container-article {
   background-color: #e3e3e3;
   width: 100%;
   min-height: 100%;
 }
-body #container-body .container #container-article .divTitle {
+body #container #containerBody .container #container-article .divTitle {
   width: 100%;
   text-align: center;
 }
-body #container-body .container #container-article #container-global {
+body #container #containerBody .container #container-article #container-global {
   width: 100%;
 }
-body #container-body .container #container-article #container-global #article-show {
+body #container #containerBody .container #container-article #container-global #article-show {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
 }
-body #container-body .container #container-article #container-global #article-show .article {
+body #container #containerBody .container #container-article #container-global #article-show .article {
   width: 100%;
   max-height: 200px;
   border: 1px solid black;
@@ -179,13 +203,13 @@ body #container-body .container #container-article #container-global #article-sh
   margin-left: 1%;
   padding: 5px;
 }
-body #container-body .container #container-article #container-global #article-show .article .content {
+body #container #containerBody .container #container-article #container-global #article-show .article .content {
   max-height: 110px;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-body #container-body .container #container-article #container-global #article-show .article .author {
+body #container #containerBody .container #container-article #container-global #article-show .article .author {
   width: 100%;
   height: 30px;
   border-top: 3px solid black;
@@ -195,32 +219,31 @@ body #container-body .container #container-article #container-global #article-sh
   align-items: center;
   margin-top: 2px;
 }
-body #container-body .container #container-article #container-global #article-show .article .author .spanAut {
+body #container #containerBody .container #container-article #container-global #article-show .article .author .spanAut {
   color: #a50606;
   font-style: italic;
 }
-body #container-body .container .container-scp {
+body #container #containerBody .container .container-scp {
   background-color: #e3e3e3;
   width: 100%;
-  min-height: 100%;
 }
-body #container-body .container .container-scp #titleSCP {
+body #container #containerBody .container .container-scp #titleSCP {
   text-align: center;
   width: 100%;
 }
-body #container-body .container .container-scp #titleSCP h1 {
+body #container #containerBody .container .container-scp #titleSCP h1 {
   padding: 5px;
 }
-body #container-body .container .container-scp .container-global {
+body #container #containerBody .container .container-scp .container-global {
   width: 100%;
 }
-body #container-body .container .container-scp .container-global .article-show {
+body #container #containerBody .container .container-scp .container-global .article-show {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
 }
-body #container-body .container .container-scp .container-global .article-show .article {
+body #container #containerBody .container .container-scp .container-global .article-show .article {
   width: 100%;
   max-height: 200px;
   border: 1px solid black;
@@ -229,13 +252,13 @@ body #container-body .container .container-scp .container-global .article-show .
   margin-left: 1%;
   padding: 5px;
 }
-body #container-body .container .container-scp .container-global .article-show .article .content {
+body #container #containerBody .container .container-scp .container-global .article-show .article .content {
   max-height: 110px;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-body #container-body .container .container-scp .container-global .article-show .article .author {
+body #container #containerBody .container .container-scp .container-global .article-show .article .author {
   width: 100%;
   height: 30px;
   border-top: 3px solid black;
@@ -245,114 +268,109 @@ body #container-body .container .container-scp .container-global .article-show .
   align-items: center;
   margin-top: 2px;
 }
-body #container-body .container .container-scp .container-global .article-show .article .author .spanAut {
+body #container #containerBody .container .container-scp .container-global .article-show .article .author .spanAut {
   color: #a50606;
   font-style: italic;
 }
-body #container-body .container #containerEdit {
+body #container #containerBody .container #containerEdit {
   background-color: #e3e3e3;
   min-height: 100%;
 }
-body #container-body .container #containerEdit #titleEdit h1 {
+body #container #containerBody .container #containerEdit #titleEdit h1 {
   text-align: center;
   padding: 15px;
 }
-body #container-body .container #containerEdit #form-editArticle {
+body #container #containerBody .container #containerEdit #form-editArticle {
   width: 100%;
 }
-body #container-body .container #containerEdit #form-editArticle form {
+body #container #containerBody .container #containerEdit #form-editArticle form {
   width: 100%;
 }
-body #container-body .container #containerEdit #form-editArticle form #edit-Title {
+body #container #containerBody .container #containerEdit #form-editArticle form #edit-Title {
   width: 50%;
   margin-right: auto;
   margin-left: auto;
 }
-body #container-body .container #containerEdit #form-editArticle form #edit-Title input {
+body #container #containerBody .container #containerEdit #form-editArticle form #edit-Title input {
   width: 60%;
   height: 40px;
   text-align: center;
 }
-body #container-body .container #containerEdit #form-editArticle form #edit-Content #cke_content {
+body #container #containerBody .container #containerEdit #form-editArticle form #edit-Content #cke_content {
   padding: 5% 5% 1% 5%;
 }
-body #container-body .container #containerEdit #edit-valid {
+body #container #containerBody .container #containerEdit #edit-valid {
   width: 100%;
   height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body #container-body .container #containerEdit #edit-valid .save {
+body #container #containerBody .container #containerEdit #edit-valid .save {
   width: 200px;
   height: 60px;
   background-color: #2ba506;
   color: #e3e3e3;
   font-size: 1.5rem;
 }
-body #container-body .container #container-user {
+body #container #containerBody .container #container-user {
   background-color: #e3e3e3;
   width: 100%;
   min-height: 100%;
 }
-body #container-body .container #container-user .divTitle {
+body #container #containerBody .container #container-user .divTitle {
   width: 100%;
   text-align: center;
 }
-body #container-body .container #container-user .profil {
+body #container #containerBody .container #container-user .profil {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
-  height: 90%;
 }
-body #container-body .container #container-user .profil #info-user {
+body #container #containerBody .container #container-user .profil #info-user {
   width: 50%;
-  height: 60vh;
+  padding: 5px;
   border: 5px solid #a50606;
   border-radius: 15px;
 }
-body #container-body .container #container-user .profil #info-user #pseudo {
+body #container #containerBody .container #container-user .profil #info-user #pseudo {
   text-align: center;
   margin-top: 5px;
 }
-body #container-body .container #container-user .profil #info-user #infoUtil {
+body #container #containerBody .container #container-user .profil #info-user #infoUtil {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  height: 15%;
   border: 1px solid black;
   margin-top: 15px;
 }
-body #container-body .container #container-user .profil #info-user #infoUtil #identity {
+body #container #containerBody .container #container-user .profil #info-user #infoUtil #identity {
   width: 80%;
-  height: 15%;
   display: flex;
   flex-direction: row;
 }
-body #container-body .container #container-user .profil #info-user #infoUtil #identity div {
+body #container #containerBody .container #container-user .profil #info-user #infoUtil #identity div {
   width: 50%;
   padding: 5px;
 }
-body #container-body .container #container-user .profil #info-user #infoUtil #identity div span {
+body #container #containerBody .container #container-user .profil #info-user #infoUtil #identity div span {
   color: #a50606;
 }
-body #container-body .container #container-user .profil #info-user #infoUtil #divMail {
+body #container #containerBody .container #container-user .profil #info-user #infoUtil #divMail {
   width: 80%;
-  height: 10%;
   padding: 5px;
   margin-top: 5px;
 }
-body #container-body .container #container-user .profil #info-user #infoUtil #divMail span {
+body #container #containerBody .container #container-user .profil #info-user #infoUtil #divMail span {
   color: #a50606;
 }
-body #container-body .container #container-user .profil #info-user #upUse {
+body #container #containerBody .container #container-user .profil #info-user #upUse {
   border: 3px solid black;
   background-color: #37ba08;
   width: 60%;
-  height: 50px;
   margin-right: auto;
   margin-left: auto;
   margin-top: 20px;
@@ -361,16 +379,15 @@ body #container-body .container #container-user .profil #info-user #upUse {
   align-items: center;
   font-size: 1.3rem;
 }
-body #container-body .container #container-user .profil #info-user #upUse a {
+body #container #containerBody .container #container-user .profil #info-user #upUse a {
   text-decoration: none;
   color: #e3e3e3;
   font-weight: bold;
 }
-body #container-body .container #container-user .profil #info-user #supUse {
+body #container #containerBody .container #container-user .profil #info-user #supUse {
   border: 3px solid black;
   background-color: #ba0808;
   width: 40%;
-  height: 50px;
   margin-right: auto;
   margin-left: auto;
   margin-top: 20px;
@@ -378,95 +395,94 @@ body #container-body .container #container-user .profil #info-user #supUse {
   justify-content: center;
   align-items: center;
 }
-body #container-body .container #container-user .profil #info-user #supUse a {
+body #container #containerBody .container #container-user .profil #info-user #supUse a {
   text-decoration: none;
   color: black;
   font-weight: bold;
 }
-body #container-body .container #container-user .profil #user-article {
+body #container #containerBody .container #container-user .profil #user-article {
   width: 30%;
-  height: 100%;
   border: 5px solid #a50606;
   border-radius: 15px;
 }
-body #container-body .container #container-user .profil #user-article div h2 {
+body #container #containerBody .container #container-user .profil #user-article div h2 {
   text-align: center;
 }
-body #container-body .container #container-user .profil #user-article div div p {
+body #container #containerBody .container #container-user .profil #user-article div div p {
   padding: 7px;
   margin-top: 5px;
 }
-body #container-body .container #container-user .profil #user-article #userList {
+body #container #containerBody .container #container-user .profil #user-article #userList {
   width: 100%;
   padding: 7px;
 }
-body #container-body .container #container-user .profil #user-article #userList h3 {
+body #container #containerBody .container #container-user .profil #user-article #userList h3 {
   text-align: center;
 }
-body #container-body .container #container-user .profil #user-article #userList div {
+body #container #containerBody .container #container-user .profil #user-article #userList div {
   width: 100%;
 }
-body #container-body .container #container-user .profil #user-article #userList div div {
+body #container #containerBody .container #container-user .profil #user-article #userList div div {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-body #container-body .container #container-user .profil #user-article #userList div div .geting {
+body #container #containerBody .container #container-user .profil #user-article #userList div div .geting {
   text-decoration: none;
   color: #0650a5;
 }
-body #container-body .container #container-user .profil #user-article #userList div div .deleting {
+body #container #containerBody .container #container-user .profil #user-article #userList div div .deleting {
   text-decoration: none;
   color: #a50606;
 }
-body #container-body .container #container-user .articleForm {
+body #container #containerBody .container #container-user .articleForm {
   width: 90%;
   margin-top: 20px;
   border: 3px solid black;
   margin-bottom: 15px;
 }
-body #container-body .container #container-user .articleForm h2 {
+body #container #containerBody .container #container-user .articleForm h2 {
   text-align: center;
 }
-body #container-body .container #container-user .articleForm form {
+body #container #containerBody .container #container-user .articleForm form {
   margin-top: 10px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
-body #container-body .container #container-user .articleForm form div {
+body #container #containerBody .container #container-user .articleForm form div {
   margin-top: 2px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-body #container-body .container #container-user .articleForm form div input {
+body #container #containerBody .container #container-user .articleForm form div input {
   width: 50%;
   margin-top: 10px;
 }
-body #container-body .container #container-user .articleForm form div textarea {
+body #container #containerBody .container #container-user .articleForm form div textarea {
   width: 100%;
 }
-body #container-body .container #container-user .articleForm form div .save {
+body #container #containerBody .container #container-user .articleForm form div .save {
   height: 40px;
   background-color: #21a506;
   font-size: 1.5rem;
   color: #e3e3e3;
   border: none;
 }
-body #container-body .container .container-form {
+body #container #containerBody .container .container-form {
   background-color: #e3e3e3;
   width: 100%;
 }
-body #container-body .container .container-form h1 {
+body #container #containerBody .container .container-form h1 {
   text-align: center;
 }
-body #container-body .container .container-form #form-register {
+body #container #containerBody .container .container-form #form-register {
   width: 100%;
   height: 100%;
 }
-body #container-body .container .container-form #form-register #register {
+body #container #containerBody .container .container-form #form-register #register {
   width: 35%;
   height: 50%;
   display: flex;
@@ -476,7 +492,7 @@ body #container-body .container .container-form #form-register #register {
   border-radius: 10px;
   margin: 70px auto auto auto;
 }
-body #container-body .container .container-form #form-register #register .div-lab {
+body #container #containerBody .container .container-form #form-register #register .div-lab {
   width: 80%;
   margin-top: 3px;
   text-align: center;
@@ -486,26 +502,26 @@ body #container-body .container .container-form #form-register #register .div-la
   margin-right: auto;
   padding: 2px;
 }
-body #container-body .container .container-form #form-register #register .div-lab input {
+body #container #containerBody .container .container-form #form-register #register .div-lab input {
   padding: 5px;
   border-radius: 8px;
 }
-body #container-body .container .container-form #form-register #register .button-inc {
+body #container #containerBody .container .container-form #form-register #register .button-inc {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body #container-body .container .container-form .title {
+body #container #containerBody .container .container-form .title {
   width: 100%;
 }
-body #container-body .container .container-form .title h1 {
+body #container #containerBody .container .container-form .title h1 {
   padding: 5px;
 }
-body #container-body .container .container-form #form-login {
+body #container #containerBody .container .container-form #form-login {
   width: 100%;
   padding: 70px;
 }
-body #container-body .container .container-form #form-login #login {
+body #container #containerBody .container .container-form #form-login #login {
   width: 40%;
   border: 1px solid #000000;
   border-radius: 10px;
@@ -516,7 +532,7 @@ body #container-body .container .container-form #form-login #login {
   margin: auto;
   padding: 10px;
 }
-body #container-body .container .container-form #form-login #login .labConnect {
+body #container #containerBody .container .container-form #form-login #login .labConnect {
   text-align: center;
   width: 80%;
   height: 30%;
@@ -524,101 +540,101 @@ body #container-body .container .container-form #form-login #login .labConnect {
   flex-direction: column;
   padding: 2px;
 }
-body #container-body .container .container-form #form-login #login .labConnect input {
+body #container #containerBody .container .container-form #form-login #login .labConnect input {
   padding: 5px;
   border-radius: 8px;
 }
-body #container-body .container .container-form #form-login #login .labConnect .save {
+body #container #containerBody .container .container-form #form-login #login .labConnect .save {
   margin-top: 6px;
 }
-body #articleView {
+body #container #articleView {
   width: 100%;
   min-height: 100%;
   background-color: #e3e3e3;
   padding: 10px;
 }
-body #articleView #titleA {
+body #container #articleView #titleA {
   width: 100%;
   margin-top: 5px;
 }
-body #articleView #titleA h1 {
+body #container #articleView #titleA h1 {
   text-align: center;
 }
-body #articleView #contentA {
+body #container #articleView #contentA {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
   margin-top: 15px;
 }
-body #articleView #nameA {
+body #container #articleView #nameA {
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
 }
-body #articleView #nameA h2 span {
+body #container #articleView #nameA h2 span {
   color: #a50606;
   font-style: italic;
 }
-body #articleView #nameA #linkArticle {
+body #container #articleView #nameA #linkArticle {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-body #articleView #instruction {
+body #container #articleView #instruction {
   width: 60%;
   padding: 50px;
   font-size: 1.2rem;
   background-color: rgba(78, 78, 78, 0.12);
   border-radius: 5px;
 }
-body #articleView #addCom {
+body #container #articleView #addCom {
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
 }
-body #articleView #commentArticle {
+body #container #articleView #commentArticle {
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
 }
-body #articleView #commentArticle span {
+body #container #articleView #commentArticle span {
   font-size: 1.1rem;
   font-weight: bold;
 }
-body #articleView #commentArticle #commentUser {
+body #container #articleView #commentArticle #commentUser {
   width: 100%;
 }
-body #articleView #commentArticle #commentUser #commentary {
+body #container #articleView #commentArticle #commentUser #commentary {
   width: 60%;
 }
-body #articleView #commentArticle #commentUser #place .commentPseudo {
+body #container #articleView #commentArticle #commentUser #place .commentPseudo {
   color: red;
 }
-body .politiqueShow {
+body #container .politiqueShow {
   width: 100%;
 }
-body .politiqueShow .titles {
+body #container .politiqueShow .titles {
   width: 100%;
 }
-body .politiqueShow .titles h1 {
+body #container .politiqueShow .titles h1 {
   text-align: center;
   padding: 5px;
 }
-body .politiqueShow div {
+body #container .politiqueShow div {
   width: 80%;
   padding: 20px;
 }
-body .politiqueShow div li {
+body #container .politiqueShow div li {
   margin-left: 20px;
   margin-top: 5px;
 }
 body footer {
   width: 100%;
   background-color: black;
-  margin-top: 23%;
+  margin-top: 2%;
 }
 body footer a {
   color: #e3e3e3;

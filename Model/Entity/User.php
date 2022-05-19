@@ -15,6 +15,42 @@ class User extends AbstractEntity
     private string $email;
     private role $role_fk;
     private string $pseudo;
+    private string $token;
+    private bool $validate;
+
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isValidate(): bool
+    {
+        return $this->validate;
+    }
+
+    /**
+     * @param bool $validate
+     */
+    public function setValidate(bool $validate): self
+    {
+        $this->validate = $validate;
+        return $this;
+    }
 
     /**
      * @return string

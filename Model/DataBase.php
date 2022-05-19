@@ -1,6 +1,5 @@
 <?php
 
-
 class DataBase
 {
     private static ?PDO $pdo = null;
@@ -24,5 +23,4 @@ class DataBase
         }
         return self::$pdo;
     }
-
 }

@@ -92,7 +92,9 @@ abstract class AbstractController
     public function redirectIfConnected(): void
     {
         if(self::verifyUserConnect()) {
-            $this->render('home/index');
+            $this->render('home/index', [
+                'articles' => ArticleManager::getSCPLimit()
+            ]);
         }
     }
 
@@ -118,7 +120,9 @@ abstract class AbstractController
     public  function redirectIfNotConnected(): void
     {
         if(!self::verifyUserConnect()) {
-            $this->render('home/index');
+            $this->render('home/index', [
+                'users_list' => ArticleManager::getSCPLimit()
+            ]);
             echo "Vous devez vous connecté";
         }
     }
@@ -138,8 +142,6 @@ abstract class AbstractController
             }
         return false;
     }
-
-
 
     /**
      * check role

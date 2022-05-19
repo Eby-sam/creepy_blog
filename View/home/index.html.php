@@ -1,16 +1,14 @@
 <?php
-
-    use creepy\Controller\UserController;
-    use creepy\Model\Manager\UserManager;
-
-
     use creepy\Controller\AbstractController;
+    use creepy\Controller\UserController;
     use creepy\Model\Entity\Tag;
+    use creepy\Model\Entity\User;
     use creepy\Model\Entity\Article;
     use creepy\Model\Entity\Comment;
     use creepy\Model\Manager\ArticleManager;
     use creepy\Model\Manager\TagManager;
     use creepy\Model\Manager\CommentManager;
+    use creepy\Model\Manager\UserManager;
 
     $articles = $data['articles'];
 ?>
@@ -21,8 +19,9 @@
         if (!UserController::verifyUserConnect()) { ?>
         <h1>Bonjour et bienvenu sur le</h1>
             <h1>Creepy blog</h1>
-
-            <h2> n'hésitez pas a vous inscrire ou vous connectez pour une meilleur expérience</h2>
+            <div id="msg">
+                <h2> N'hésitez pas a vous inscrire ou vous connectez pour une meilleur expérience</h2>
+            </div>
 
             <?php
             }

@@ -93,8 +93,6 @@ class ArticleManager
             VALUES (:title ,:content, :tag_fk, :user_fk)
         ");
 
-
-
         $stmt->bindValue(':title', $article->getTitle());
         $stmt->bindValue(':content', $article->getContent());
         $stmt->bindValue(':tag_fk', $article->getTagFk()->getId());
@@ -112,7 +110,9 @@ class ArticleManager
      */
     public static function articleExists(int $id): bool
     {
-        $result = DataBase::DataConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");
+        $result = DataBase::DataConnect()->query("SELECT count(*) as cnt FROM " .
+                                                            self::TABLE . " WHERE id = $id");
+
         return $result ? $result->fetch()['cnt'] : 0;
     }
 
